@@ -67,12 +67,12 @@ def f(y, t, params):#14.1' с 731
 
 
 print('ffff',M1)
-r1_X_Y_data = open('Coords/coord0.txt', 'r').read()
-r2_X_Y_data = open('Coords/coord1.txt', 'r').read()
-r3_X_Y_data = open('Coords/coord2.txt', 'r').read()
-v1_X_Y_data = open('Coords/speed0.txt', 'r').read()
-v2_X_Y_data = open('Coords/speed1.txt', 'r').read()
-v3_X_Y_data = open('Coords/speed2.txt', 'r').read()
+r1_X_Y_data = open('Coords/coord0_NumOne.txt', 'r').read()
+r2_X_Y_data = open('Coords/coord1_NumOne.txt', 'r').read()
+r3_X_Y_data = open('Coords/coord2_NumOne.txt', 'r').read()
+v1_X_Y_data = open('Coords/speed0_NumOne.txt', 'r').read()
+v2_X_Y_data = open('Coords/speed1_NumOne.txt', 'r').read()
+v3_X_Y_data = open('Coords/speed2_NumOne.txt', 'r').read()
 r1_X_Y_data = r1_X_Y_data.split('\n')
 r2_X_Y_data = r2_X_Y_data.split('\n')
 r3_X_Y_data = r3_X_Y_data.split('\n')
@@ -145,6 +145,19 @@ print('k2',k2)
 print(c)
 print((M0*vx0+M1*vx1+M2*vx2)/(M0+M1+M2))
 print(H)
+
+
+text_file = open("Coords/coord0_NumThree.txt", "w")
+text_file1 = open("Coords/coord1_NumThree.txt", "w")
+text_file2 = open("Coords/coord2_NumThree.txt", "w")
+
+for i in range(len(x0)):
+    text_file.write(str(x0[i]) + ";" + str(y0[i]) + "\n")
+    text_file1.write(str(x1[i]) + ";" + str(y1[i]) + "\n")
+    text_file2.write(str(x2[i]) + ";" + str(y2[i]) + "\n")
+text_file.close()
+text_file1.close()
+text_file2.close()
 #plt.plot(x1, y1, linewidth=1, color='red')
 #plt.plot(x2, y2, linewidth=1, color='blue')
 #plt.plot(x0, y0, linewidth=1, color='black')

@@ -113,6 +113,18 @@ yy2=-M1/M*y1+(M1+M0)/M*y2
 print(np.sqrt((xx1-xx2)**2+(yy1-yy2)**2))
 print(np.sqrt((xx0-xx2)**2+(yy0-yy2)**2))
 print(np.sqrt((xx1-xx0)**2+(yy1-yy0)**2))
+
+text_file = open("Coords/coord0_NumTwo.txt", "w")
+text_file1 = open("Coords/coord1_NumTwo.txt", "w")
+text_file2 = open("Coords/coord2_NumTwo.txt", "w")
+
+for i in range(len(xx0)):
+    text_file.write(str(xx0[i]) + ";" + str(yy0[i]) + "\n")
+    text_file1.write(str(xx1[i]) + ";" + str(yy1[i]) + "\n")
+    text_file2.write(str(xx2[i]) + ";" + str(yy2[i]) + "\n")
+text_file.close()
+text_file1.close()
+text_file2.close()
 #plt.plot(xx1, yy1, linewidth=1, color='red')
 #plt.plot(xx2, yy2, linewidth=1, color='blue')
 #plt.plot(xx0, yy0, linewidth=1, color='black')

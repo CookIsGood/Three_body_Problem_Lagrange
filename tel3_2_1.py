@@ -2,7 +2,7 @@ import numpy as np
 from scipy.integrate import odeint
 from scipy.optimize import fsolve
 import matplotlib.pyplot as plt
-
+import os
 
 M0_M1_data = open('Params/M0-M1.txt', 'r').read()
 M2_f_data = open('Params/M2-f.txt', 'r').read()
@@ -125,12 +125,12 @@ if os.path.exists("Coords"):
 else:
     os.mkdir("Coords")
     print("Папка Coords создана")
-text_file = open("Coords/coord0.txt", "w")
-text_file1 = open("Coords/coord1.txt", "w")
-text_file2 = open("Coords/coord2.txt", "w")
-text_file3 = open("Coords/speed0.txt", "w")
-text_file4 = open("Coords/speed1.txt", "w")
-text_file5 = open("Coords/speed2.txt", "w")
+text_file = open("Coords/coord0_NumOne.txt", "w")
+text_file1 = open("Coords/coord1_NumOne.txt", "w")
+text_file2 = open("Coords/coord2_NumOne.txt", "w")
+text_file3 = open("Coords/speed0_NumOne.txt", "w")
+text_file4 = open("Coords/speed1_NumOne.txt", "w")
+text_file5 = open("Coords/speed2_NumOne.txt", "w")
 
 text_file6 = open("Coords/coord01.txt", "w")
 text_file7 = open("Coords/coord02.txt", "w")
@@ -144,10 +144,10 @@ for i in range(len(xx0)):
     text_file4.write(str(vvx1[i]) + ";" + str(vvy1[i]) + "\n")
     text_file5.write(str(vvx2[i]) + ";" + str(vvy2[i]) + "\n")
 
-    text_file6.write(str(x1[i]) + ";" + str(y1[i]) + "\n")
-    text_file7.write(str(x2[i]) + ";" + str(y2[i]) + "\n")
-    text_file8.write(str(vx1[i]) + ";" + str(vy1[i]) + "\n")
-    text_file9.write(str(vx2[i]) + ";" + str(vy2[i]) + "\n")
+text_file6.write(str(x1[0]) + ";" + str(y1[0]) + "\n")
+text_file7.write(str(x2[0]) + ";" + str(y2[0]) + "\n")
+text_file8.write(str(vx1[0]) + ";" + str(vy1[0]) + "\n")
+text_file9.write(str(vx2[0]) + ";" + str(vy2[0]) + "\n")
 text_file.close()
 text_file1.close()
 text_file2.close()
@@ -163,4 +163,12 @@ text_file9.close()
 print(np.sqrt((xx1 - xx2) ** 2 + (yy1 - yy2) ** 2))  # проверка равенства сторон
 print(np.sqrt((xx0 - xx2) ** 2 + (yy0 - yy2) ** 2))
 print(np.sqrt((xx1 - xx0) ** 2 + (yy1 - yy0) ** 2))
+#plt.plot(xx1, yy1, linewidth=1, color='red')
+#plt.plot(xx2, yy2, linewidth=1, color='blue')
+#plt.plot(xx0, yy0, linewidth=1, color='black')
+#plt.grid(True)
 
+#plt.axis('scaled')
+
+
+#plt.show()
