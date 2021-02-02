@@ -120,17 +120,22 @@ vvy0 = -M1 / M * vy1 - M2 / M * vy2
 vvy1 = (M2 + M0) / M * vy1 - M2 / M * vy2
 vvy2 = -M1 / M * vy1 + (M1 + M0) / M * vy2
 
-text_file = open("coord0.txt", "w")
-text_file1 = open("coord1.txt", "w")
-text_file2 = open("coord2.txt", "w")
-text_file3 = open("speed0.txt", "w")
-text_file4 = open("speed1.txt", "w")
-text_file5 = open("speed2.txt", "w")
+if os.path.exists("Coords"):
+    print("Папка Coords уже существует")
+else:
+    os.mkdir("Coords")
+    print("Папка Coords создана")
+text_file = open("Coords/coord0.txt", "w")
+text_file1 = open("Coords/coord1.txt", "w")
+text_file2 = open("Coords/coord2.txt", "w")
+text_file3 = open("Coords/speed0.txt", "w")
+text_file4 = open("Coords/speed1.txt", "w")
+text_file5 = open("Coords/speed2.txt", "w")
 
-text_file6 = open("coord01.txt", "w")
-text_file7 = open("coord02.txt", "w")
-text_file8 = open("speed01.txt", "w")
-text_file9 = open("speed02.txt", "w")
+text_file6 = open("Coords/coord01.txt", "w")
+text_file7 = open("Coords/coord02.txt", "w")
+text_file8 = open("Coords/speed01.txt", "w")
+text_file9 = open("Coords/speed02.txt", "w")
 for i in range(len(xx0)):
     text_file.write(str(xx0[i]) + ";" + str(yy0[i]) + "\n")
     text_file1.write(str(xx1[i]) + ";" + str(yy1[i]) + "\n")

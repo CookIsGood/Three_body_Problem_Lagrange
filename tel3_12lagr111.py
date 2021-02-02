@@ -3,13 +3,43 @@ from scipy.integrate import odeint
 from scipy.optimize import fsolve
 import matplotlib.pyplot as plt
 
+M0_M1_data = open('Params/M0-M1.txt', 'r').read()
+M2_f_data = open('Params/M2-f.txt', 'r').read()
+steps_t_data = open('Params/steps-t.txt', 'r').read()
 
-f1=1
-M0=1.9885*10**8
-M1=M0/332940
-M2=M1*317.8
+M0_M1 = M0_M1_data.split('\n')
+M2_f = M2_f_data.split('\n')
+steps_t = steps_t_data.split('\n')
+
+M0_date = []
+M1_date = []
+
+M2_date = []
+f_date = []
+
+steps_date = []
+t_date = []
+for line in M0_M1:
+    if len(line) > 1:
+        x, y = line.split(';')
+        M0_date.append(float(x))
+        M1_date.append(float(y))
+for line in M2_f:
+    if len(line) > 1:
+        x, y = line.split(';')
+        M2_date.append(float(x))
+        f_date.append(float(y))
+for line in steps_t:
+    if len(line) > 1:
+        x, y = line.split(';')
+        steps_date.append(float(x))
+        t_date.append(float(y))
+f1 = f_date[0]
+M0 = M0_date[0]
+M1 = M1_date[0]
+M2 = M2_date[0]
 M=M0+M1+M2
-t = np.linspace(0, 4, 101)
+t = np.arange(0, steps_date[0], t_date[0])
 #fig = plt.figure(facecolor='white', figsize=(6, 6))
 params = [M0, M1, M2,f1]
 
@@ -33,10 +63,10 @@ def f(y, t, params):# 14.6 14.6' с 735
         vx2,
         vy2
             ]
-r1_X_Y_data = open('coord01.txt', 'r').read()
-r2_X_Y_data = open('coord02.txt', 'r').read()
-v1_X_Y_data = open('speed01.txt', 'r').read()
-v2_X_Y_data = open('speed02.txt', 'r').read()
+r1_X_Y_data = open('Coords/coord01.txt', 'r').read()
+r2_X_Y_data = open('Coords/coord02.txt', 'r').read()
+v1_X_Y_data = open('Coords/speed01.txt', 'r').read()
+v2_X_Y_data = open('Coords/speed02.txt', 'r').read()
 r1_X_Y_data = r1_X_Y_data.split('\n')
 r2_X_Y_data = r2_X_Y_data.split('\n')
 v1_X_Y_data = v1_X_Y_data.split('\n')

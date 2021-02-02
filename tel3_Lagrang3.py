@@ -4,11 +4,42 @@ from scipy.optimize import fsolve
 import matplotlib.pyplot as plt
 
 
-f1=1
-M0= 1.9885*10**8
-M1= M0/332940
-M2= M1*317.8
-t = np.linspace(0, 4, 101)
+M0_M1_data = open('Params/M0-M1.txt', 'r').read()
+M2_f_data = open('Params/M2-f.txt', 'r').read()
+steps_t_data = open('Params/steps-t.txt', 'r').read()
+
+M0_M1 = M0_M1_data.split('\n')
+M2_f = M2_f_data.split('\n')
+steps_t = steps_t_data.split('\n')
+
+M0_date = []
+M1_date = []
+
+M2_date = []
+f_date = []
+
+steps_date = []
+t_date = []
+for line in M0_M1:
+    if len(line) > 1:
+        x, y = line.split(';')
+        M0_date.append(float(x))
+        M1_date.append(float(y))
+for line in M2_f:
+    if len(line) > 1:
+        x, y = line.split(';')
+        M2_date.append(float(x))
+        f_date.append(float(y))
+for line in steps_t:
+    if len(line) > 1:
+        x, y = line.split(';')
+        steps_date.append(float(x))
+        t_date.append(float(y))
+f1 = f_date[0]
+M0 = M0_date[0]
+M1 = M1_date[0]
+M2 = M2_date[0]
+t = np.arange(0, steps_date[0], t_date[0])
 #fig = plt.figure(facecolor='white', figsize=(6, 6))
 params = [M0, M1, M2,f1]
 
@@ -36,12 +67,12 @@ def f(y, t, params):#14.1' с 731
 
 
 print('ffff',M1)
-r1_X_Y_data = open('coord0.txt', 'r').read()
-r2_X_Y_data = open('coord1.txt', 'r').read()
-r3_X_Y_data = open('coord2.txt', 'r').read()
-v1_X_Y_data = open('speed0.txt', 'r').read()
-v2_X_Y_data = open('speed1.txt', 'r').read()
-v3_X_Y_data = open('speed2.txt', 'r').read()
+r1_X_Y_data = open('Coords/coord0.txt', 'r').read()
+r2_X_Y_data = open('Coords/coord1.txt', 'r').read()
+r3_X_Y_data = open('Coords/coord2.txt', 'r').read()
+v1_X_Y_data = open('Coords/speed0.txt', 'r').read()
+v2_X_Y_data = open('Coords/speed1.txt', 'r').read()
+v3_X_Y_data = open('Coords/speed2.txt', 'r').read()
 r1_X_Y_data = r1_X_Y_data.split('\n')
 r2_X_Y_data = r2_X_Y_data.split('\n')
 r3_X_Y_data = r3_X_Y_data.split('\n')
