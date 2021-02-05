@@ -110,9 +110,30 @@ xx2=-M1/M*x1+(M1+M0)/M*x2
 yy0=-M1/M*y1-M2/M*y2
 yy1=(M2+M0)/M*y1-M2/M*y2
 yy2=-M1/M*y1+(M1+M0)/M*y2
-print(np.sqrt((xx1-xx2)**2+(yy1-yy2)**2))
-print(np.sqrt((xx0-xx2)**2+(yy0-yy2)**2))
-print(np.sqrt((xx1-xx0)**2+(yy1-yy0)**2))
+
+
+rr1=np.sqrt((xx1-xx2)**2+(yy1-yy2)**2)
+rr2=np.sqrt((xx0-xx2)**2+(yy0-yy2)**2)
+rr3=np.sqrt((xx1-xx0)**2+(yy1-yy0)**2)
+#усредненный общий коэффицент
+k1=(rr1/rr2+rr2/rr3+rr3/rr1)/3
+U=f1*(M0*M1/(np.sqrt((x1)**2+(y1)**2))+M0*M2/(np.sqrt((x2)**2+(y2)**2))+M2*M1/(np.sqrt((x1-x2)**2+(y1-y2)**2)))#полная силовая функция 14.2
+c3=-1/M*((M1*x1+M2*x2)*(M1*vy1+M2*vy2)-(M1*y1+M2*y2)*(M1*vx1+M2*vx2))+M1*(x1*vy1-y1*vx1)+M2*(x2*vy2-y2*vx2)
+h=-1/2/M*((M1*vx1+M2*vx2)**2+(M1*vy1+M2*vy2)**2)+1/2*M1*(vx1**2+vy1**2)+1/2*M2*(vx2**2+vy2**2)-U
+#график h c
+HH=h[0]/h
+
+c_data= c3[0]/c3
+text_file10 = open("Coords/k_NumTwo.txt", "w")
+text_file11 = open("Coords/H_NumTwo.txt", "w")
+text_file12 = open("Coords/C_NumTwo.txt", "w")
+for i in range(len(t)):
+    text_file10.write(str(round(t[i],3)) + ";" + str(round(k1[i],3)) + "\n")
+    text_file11.write(str(round(t[i], 3)) + ";" + str(round(HH[i], 3)) + "\n")
+    text_file12.write(str(round(t[i], 3)) + ";" + str(round(c_data[i], 3)) + "\n")
+text_file10.close()
+text_file11.close()
+text_file12.close()
 
 text_file = open("Coords/coord0_NumTwo.txt", "w")
 text_file1 = open("Coords/coord1_NumTwo.txt", "w")

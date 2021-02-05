@@ -27,7 +27,19 @@ def _save_figure():
         print("Папка Image создана")
     time = datetime.today().strftime("%d%m%Y_%H%M%S")
     plt.savefig("Image/" + str(time) + "Image.png")
+def _startAnimate():
+    with open("tel3_2_1_anim.py", "r") as f:
+        exec(f.read())
 
+
+def _startAnimate1():
+    with open("tel3_12lagr_anim.py", "r") as f:
+        exec(f.read())
+
+
+def _startAnimate2():
+    with open("tel3_Lagrang3anim.py", "r") as f:
+        exec(f.read())
 
 root = Tk()
 root.geometry('1000x700')
@@ -40,19 +52,37 @@ filemenu.add_command(label="Сохранить графики...", command=_save
 # filemenu.add_command(label="Перезапуск", command=_refresh)
 filemenu.add_command(label="Выход", command=_quit)
 
+
 helpmenu = Menu(mainmenu, tearoff=0)
 testmenu = Menu(mainmenu, tearoff=0)
+grathmenu = Menu(mainmenu, tearoff=0)
+animationmenu = Menu(mainmenu, tearoff=0)
+
+
 helpmenu.add_command(label="Помощь")
 helpmenu.add_command(label="О программе")
 
 mainmenu.add_cascade(label="Инструменты", menu=filemenu)
+mainmenu.add_cascade(label="Графики", menu=grathmenu)
+mainmenu.add_cascade(label="Анимация", menu=animationmenu)
 mainmenu.add_cascade(label="Тестирование", menu=testmenu)
 mainmenu.add_cascade(label="Справка", menu=helpmenu)
+
+grathmenu.add_command(label="#1", command=_quit)
+grathmenu.add_command(label="#2", command=_quit)
+grathmenu.add_command(label="#3", command=_quit)
+grathmenu.add_command(label="#4", command=_quit)
+grathmenu.add_command(label="#5", command=_quit)
+grathmenu.add_command(label="#6", command=_quit)
+
+animationmenu.add_command(label="#1", command=_startAnimate)
+animationmenu.add_command(label="#2", command=_startAnimate1)
+animationmenu.add_command(label="#3", command=_startAnimate2)
 
 data = np.random.rand(100)
 t = np.arange(0, 100, 1)
 
-fig, (ax1, ax2, ax3, ax4) = plt.subplots(4)
+fig, (ax1, ax2, ax3, ax4, ax5, ax6) = plt.subplots(6)
 
 
 def _saveLog():
@@ -99,6 +129,140 @@ def _useParams():
 
 
 def _start_grath():
+
+    k1_X_Y_data_NumOne = open("Coords/k_NumOne.txt", "r").read()
+    k1_X_Y_data_NumTwo = open("Coords/k_NumTwo.txt", "r").read()
+    k1_X_Y_data_NumThree = open("Coords/k_NumThree.txt", "r").read()
+
+    k1_X_Y_data_NumOne = k1_X_Y_data_NumOne.split('\n')
+    k1_X_Y_data_NumTwo = k1_X_Y_data_NumTwo.split('\n')
+    k1_X_Y_data_NumThree = k1_X_Y_data_NumThree.split('\n')
+
+    k1_x_NumOne, k1_y_NumOne,k1_x_NumTwo, k1_y_NumTwo,k1_x_NumThree, k1_y_NumThree = [], [], [], [], [], []
+
+    for line in k1_X_Y_data_NumOne:
+        if len(line) > 1:
+            x, y = line.split(';')
+            k1_x_NumOne.append(float(x))
+            k1_y_NumOne.append(float(y))
+    for line in k1_X_Y_data_NumTwo:
+        if len(line) > 1:
+            x, y = line.split(';')
+            k1_x_NumTwo.append(float(x))
+            k1_y_NumTwo.append(float(y))
+    for line in k1_X_Y_data_NumThree:
+        if len(line) > 1:
+            x, y = line.split(';')
+            k1_x_NumThree.append(float(x))
+            k1_y_NumThree.append(float(y))
+
+    H_X_Y_data_NumOne = open("Coords/H_NumOne.txt", "r").read()
+    H_X_Y_data_NumTwo = open("Coords/H_NumTwo.txt", "r").read()
+    H_X_Y_data_NumThree = open("Coords/H_NumThree.txt", "r").read()
+
+    H_X_Y_data_NumOne = H_X_Y_data_NumOne.split('\n')
+    H_X_Y_data_NumTwo = H_X_Y_data_NumTwo.split('\n')
+    H_X_Y_data_NumThree = H_X_Y_data_NumThree.split('\n')
+
+    H_x_NumOne, H_y_NumOne, H_x_NumTwo, H_y_NumTwo, H_x_NumThree, H_y_NumThree = [], [], [], [], [], []
+
+    for line in H_X_Y_data_NumOne:
+        if len(line) > 1:
+            x, y = line.split(';')
+            H_x_NumOne.append(float(x))
+            H_y_NumOne.append(float(y))
+    for line in H_X_Y_data_NumTwo:
+        if len(line) > 1:
+            x, y = line.split(';')
+            H_x_NumTwo.append(float(x))
+            H_y_NumTwo.append(float(y))
+    for line in H_X_Y_data_NumThree:
+        if len(line) > 1:
+            x, y = line.split(';')
+            H_x_NumThree.append(float(x))
+            H_y_NumThree.append(float(y))
+
+    C_X_Y_data_NumOne = open("Coords/C_NumOne.txt", "r").read()
+    C_X_Y_data_NumTwo = open("Coords/C_NumTwo.txt", "r").read()
+    C_X_Y_data_NumThree = open("Coords/C_NumThree.txt", "r").read()
+
+    C_X_Y_data_NumOne = C_X_Y_data_NumOne.split('\n')
+    C_X_Y_data_NumTwo = C_X_Y_data_NumTwo.split('\n')
+    C_X_Y_data_NumThree = C_X_Y_data_NumThree.split('\n')
+
+    C_x_NumOne, C_y_NumOne, C_x_NumTwo, C_y_NumTwo, C_x_NumThree, C_y_NumThree = [], [], [], [], [], []
+
+    for line in C_X_Y_data_NumOne:
+        if len(line) > 1:
+            x, y = line.split(';')
+            C_x_NumOne.append(float(x))
+            C_y_NumOne.append(float(y))
+    for line in C_X_Y_data_NumTwo:
+        if len(line) > 1:
+            x, y = line.split(';')
+            C_x_NumTwo.append(float(x))
+            C_y_NumTwo.append(float(y))
+    for line in C_X_Y_data_NumThree:
+        if len(line) > 1:
+            x, y = line.split(';')
+            C_x_NumThree.append(float(x))
+            C_y_NumThree.append(float(y))
+
+    M0_M1_data = open('Params/M0-M1.txt', 'r').read()
+    M2_f_data = open('Params/M2-f.txt', 'r').read()
+    c_e_data = open('Params/c-e.txt', 'r').read()
+    F_vp_data = open('Params/F-vp.txt', 'r').read()
+    steps_t_data = open('Params/steps-t.txt', 'r').read()
+
+    M0_M1 = M0_M1_data.split('\n')
+    M2_f = M2_f_data.split('\n')
+    c_e = c_e_data.split('\n')
+    F_vp = F_vp_data.split('\n')
+    steps_t = steps_t_data.split('\n')
+
+    M0_date = []
+    M1_date = []
+
+    M2_date = []
+    f_date = []
+
+    c_date = []
+    e_date = []
+
+    F_date = []
+    vp_date = []
+
+    steps_date = []
+    t_date = []
+    for line in M0_M1:
+        if len(line) > 1:
+            x, y = line.split(';')
+            M0_date.append(float(x))
+            M1_date.append(float(y))
+    for line in M2_f:
+        if len(line) > 1:
+            x, y = line.split(';')
+            M2_date.append(float(x))
+            f_date.append(float(y))
+    for line in c_e:
+        if len(line) > 1:
+            x, y = line.split(';')
+            c_date.append(float(x))
+            e_date.append(float(y))
+    for line in F_vp:
+        if len(line) > 1:
+            x, y = line.split(';')
+            F_date.append(float(x))
+            vp_date.append(float(y))
+    for line in steps_t:
+        if len(line) > 1:
+            x, y = line.split(';')
+            steps_date.append(float(x))
+            t_date.append(float(y))
+
+
+
+
     r1_X_Y_data_NumOne, r2_X_Y_data_NumOne, r3_X_Y_data_NumOne = open('Coords/coord0_NumOne.txt', 'r').read(), open(
         'Coords/coord1_NumOne.txt', 'r').read(), open('Coords/coord2_NumOne.txt', 'r').read()
     r1_X_Y_data_NumTwo, r2_X_Y_data_NumTwo, r3_X_Y_data_NumTwo = open('Coords/coord0_NumTwo.txt', 'r').read(), open(
@@ -195,43 +359,69 @@ def _start_grath():
     ax2.clear()
     ax3.clear()
     ax4.clear()
+    ax5.clear()
+    ax6.clear()
 
-    ax1.set(title='1')
+    ax1.set(title='#1 Плоское частное решение Лагранжа задачи трех тел,\n расчет уравнением Ляпунова')
     ax1.set_xlabel('x')
     ax1.set_ylabel('y')
-    ax1.plot(r1_x_new_NumOne, r1_y_new_NumOne, linewidth=1, color='red')
-    ax1.plot(r2_x_new_NumOne, r2_y_new_NumOne, linewidth=1, color='blue')
-    ax1.plot(r3_x_new_NumOne, r3_y_new_NumOne, linewidth=1, color='black')
-    ax1.set_aspect('equal', adjustable='box', anchor='C')
+    ax1.plot(r1_x_new_NumOne, r1_y_new_NumOne, linewidth=1, color='black', label='r0')
+    ax1.plot(r2_x_new_NumOne, r2_y_new_NumOne, linewidth=1, color='blue', label='r1')
+    ax1.plot(r3_x_new_NumOne, r3_y_new_NumOne, linewidth=1, color='red', label='r2')
+    ax1.legend()
+    #ax1.legend(bbox_to_anchor=(0.165, 1.3))
+    #ax1.set_aspect('equal', adjustable='box', anchor='C')
 
-    ax2.set(title='2')
+    ax2.set(title='#2 Плоское частное решение Лагранжа задачи трех тел,\n метод относительных координат')
     ax2.set_xlabel('x')
     ax2.set_ylabel('y')
-    ax2.plot(r1_x_new_NumTwo, r1_y_new_NumTwo, linewidth=1, color='red')
-    ax2.plot(r2_x_new_NumTwo, r2_y_new_NumTwo, linewidth=1, color='blue')
-    ax2.plot(r3_x_new_NumTwo, r3_y_new_NumTwo, linewidth=1, color='black')
-    ax2.set_aspect('equal', adjustable='box', anchor='C')
+    ax2.plot(r1_x_new_NumTwo, r1_y_new_NumTwo, linewidth=1, color='black', label='r0')
+    ax2.plot(r2_x_new_NumTwo, r2_y_new_NumTwo, linewidth=1, color='blue', label='r1')
+    ax2.plot(r3_x_new_NumTwo, r3_y_new_NumTwo, linewidth=1, color='red', label='r2')
+    ax2.legend()
+    #ax2.set_aspect('equal', adjustable='box', anchor='C')
 
-    ax3.set(title='3')
+    ax3.set(title='#3 Плоское частное решение Лагранжа задачи трех тел,\n метод барицентрических координат')
     ax3.set_xlabel('x')
     ax3.set_ylabel('y')
-    ax3.plot(r1_x_new_NumThree, r1_y_new_NumThree, linewidth=1, color='red')
-    ax3.plot(r2_x_new_NumThree, r2_y_new_NumThree, linewidth=1, color='blue')
-    ax3.plot(r3_x_new_NumThree, r3_y_new_NumThree, linewidth=1, color='black')
-    ax3.set_aspect('equal', adjustable='box', anchor='C')
+    ax3.plot(r1_x_new_NumThree, r1_y_new_NumThree, linewidth=1, color='black', label='r0')
+    ax3.plot(r2_x_new_NumThree, r2_y_new_NumThree, linewidth=1, color='blue', label='r1')
+    ax3.plot(r3_x_new_NumThree, r3_y_new_NumThree, linewidth=1, color='red', label='r2')
+    ax3.legend()
+    #ax3.set_aspect('equal', adjustable='box', anchor='C')
 
-    ax4.set(title='4')
+    ax4.set(title='#4 График отношения H по времени к начальным значениям')
     ax4.set_xlabel('t')
-    ax4.set_ylabel('U')
-    ax4.plot(r1_x_new_NumOne, r1_y_new_NumOne, linewidth=1, color='red')
-    ax4.plot(r2_x_new_NumOne, r2_y_new_NumOne, linewidth=1, color='blue')
-    ax4.plot(r3_x_new_NumOne, r3_y_new_NumOne, linewidth=1, color='black')
-    ax4.set_aspect('equal', adjustable='box', anchor='C')
+    ax4.set_ylabel('H')
+    ax4.plot(H_x_NumOne, H_y_NumOne, linewidth=1, color='orange', label='h0')
+    ax4.plot(H_x_NumTwo, H_y_NumTwo, linewidth=1, color='blue', label='h1')
+    ax4.plot(H_x_NumThree, H_y_NumThree, linewidth=1, color='red', label='h2')
+    ax4.legend()
+    #ax4.set_aspect('equal', adjustable='box', anchor='C')
+
+    ax5.set(title='#5 График отношения C по времени к начальным значениям')
+    ax5.set_xlabel('t')
+    ax5.set_ylabel('C')
+    ax5.plot(C_x_NumOne, C_y_NumOne, linewidth=1, color='orange', label='c0')
+    ax5.plot(C_x_NumTwo, C_y_NumTwo, linewidth=1, color='blue', label='c1')
+    ax5.plot(C_x_NumThree, C_y_NumThree, linewidth=1, color='red', label='c2')
+    ax5.legend()
+    # ax4.set_aspect('equal', adjustable='box', anchor='C')
+
+    ax6.set(title='#6 График отношения сторон треугольников')
+    ax6.set_xlabel('t')
+    ax6.set_ylabel('k')
+    ax6.plot(k1_x_NumOne, k1_y_NumOne, linewidth=1, color='orange', label='k1')
+    ax6.plot(k1_x_NumTwo, k1_y_NumTwo, linewidth=1, color='blue', label='k2')
+    ax6.plot(k1_x_NumThree, k1_y_NumThree, linewidth=1, color='red', label='k3')
+    ax6.legend()
+    #ax5.set_aspect('equal', adjustable='box', anchor='C')
+
 
     canvas.draw_idle()
-    text = f"{time}:\nM0 = {InpTxt} M1 = {InpTxt2} M2 = {InpTxt3}\nf = {InpTxt4} c = {InpTxt5} e = {InpTxt6}\nF = {InpTxt7} vp = {InpTxt8}\nКоличество шагов = {InpTxt9}\nШаг интегрирования = {InpTxt10}\n" \
+    text = f"{time}:\nM0 = {M0_date[0]} M1 = {M1_date[0]} M2 = {M2_date[0]}\nf = {f_date[0]} c = {c_date[0]} e = {e_date[0]}\nF = {F_date[0]} vp = {vp_date[0]}\nКоличество шагов = {steps_date[0]}\nШаг интегрирования = {t_date[0]}\n" \
            f"r_1=(x_1,y_1)=({round(r1_x_new_NumOne[0], 7)},{round(r1_y_new_NumOne[0], 7)})\nr_2=(x_2,y_2)=({round(r2_x_new_NumOne[0], 7)},{round(r2_y_new_NumOne[0], 7)})\nr_3=(x_3,y_3)=({round(r3_x_new_NumOne[0], 7)},{round(r3_y_new_NumOne[0], 7)})\n" \
-           f"v_1=(xv_1,yv_1)=({round(v1_x_new_NumOne[0], 7)},{round(v1_y_new_NumOne[0], 7)})\nv_2=(xv_2,yv_2)=({round(v2_x_new_NumOne[0], 7)},{round(v2_y_new_NumOne[0], 7)})\nv_3=(xv_3,yv_3)=({round(v3_x_new_NumOne[0], 7)},{round(v3_y_new_NumOne[0], 7)})\n"
+           f"v_1=(xv_1,yv_1)=({round(v1_x_new_NumOne[0], 7)},{round(v1_y_new_NumOne[0], 7)})\nv_2=(xv_2,yv_2)=({round(v2_x_new_NumOne[0], 7)},{round(v2_y_new_NumOne[0], 7)})\nv_3=(xv_3,yv_3)=({round(v3_x_new_NumOne[0], 7)},{round(v3_y_new_NumOne[0], 7)})\n\n"
 
     LogText.insert(1.0, text)
 
@@ -247,26 +437,18 @@ def combineFunc(*funcs):
     return combinedFunc
 
 
-def _startAnimate():
-    with open("tel3_2_1_anim.py", "r") as f:
-        exec(f.read())
 
 
-def _startAnimate1():
-    with open("tel3_12lagr_anim.py", "r") as f:
-        exec(f.read())
 
-
-def _startAnimate2():
-    with open("tel3_Lagrang3anim.py", "r") as f:
-        exec(f.read())
-
-
-canvas.get_tk_widget().place(relwidth=0.6, relheight=3, relx=0, rely=0)
+canvas.get_tk_widget().place(relwidth=0.6, relheight=5, relx=0, rely=0)
 
 scrollbar = Scrollbar(master=root, orient=VERTICAL)
 scrollbar["command"] = canvas.get_tk_widget().yview
 scrollbar.place(relwidth=0.02, relheight=1, relx=0.601, rely=0)
+
+scrollbar1 = Scrollbar(master=root, orient=HORIZONTAL)
+scrollbar1["command"] = canvas.get_tk_widget().xview
+scrollbar1.place(relwidth=0.6, relheight=0.03, relx=0, rely=0.972)
 
 InputText = Entry(root)
 InputText.place(relwidth=0.05, relx=0.7, rely=0.05)
@@ -325,17 +507,6 @@ StartButton = Button(master=root, text='Построить графики!',
                      command=_start_grath)
 StartButton.place(relx=0.85, rely=0.33)
 
-StartAnimationButton = Button(master=root, text='Анимация #1',
-                              command=combineFunc(_startAnimate))
-StartAnimationButton.place(relx=0.65, rely=0.60)
-
-StartAnimationButton1 = Button(master=root, text='Анимация #2',
-                               command=combineFunc(_startAnimate1))
-StartAnimationButton1.place(relx=0.768, rely=0.60)
-
-StartAnimationButton2 = Button(master=root, text='Анимация #3',
-                               command=combineFunc(_startAnimate2))
-StartAnimationButton2.place(relx=0.885, rely=0.60)
 
 TestButton = Button(root, text="Применить параметры!", command=_useParams).place(relx=0.68, rely=0.33)
 
@@ -354,7 +525,7 @@ LogText.place(relwidth=0.899, relheight=0.9)
 scrollbar.config(command=LogText.yview)
 scrollbar.place(relwidth=0.07, relheight=0.9, relx=0.90, rely=0.005)
 
-plt.grid(True)
+
 plt.subplots_adjust(hspace=0.7)
 
 root.minsize(950, 600)

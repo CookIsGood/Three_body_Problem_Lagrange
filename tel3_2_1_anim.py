@@ -50,23 +50,29 @@ canvas.get_tk_widget().place(relx=0, rely=0)
 toolbar = NavigationToolbar2Tk(canvas, root)
 toolbar.update()
 canvas.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
-
+text='#1'
 ax_1 = fig.add_subplot(111)
+ax_1.set(title=text)
+ax_1.set_xlabel('x')
+ax_1.set_ylabel('y')
 camera = Camera(fig)
-
+r0=((max(r1_x_new_NumOne)-min(r1_x_new_NumOne))/2+(max(r1_y_new_NumOne)-min(r1_y_new_NumOne))/2)/100*2.5
+r1=((max(r2_x_new_NumOne)-min(r2_x_new_NumOne))/2+(max(r2_y_new_NumOne)-min(r2_y_new_NumOne))/2)/100*2.5
+r2=((max(r3_x_new_NumOne)-min(r3_x_new_NumOne))/2+(max(r3_x_new_NumOne)-min(r3_x_new_NumOne))/2)/100*2.5
 for i in range(len(np.arange(0, steps_date[0], t_date[0]))):
     #plt.plot([i] * 10)
-    pc1 = plt.Circle((r1_x_new_NumOne[i], r1_y_new_NumOne[i]), 1, fc='black')
-    pc2= plt.Circle((r2_x_new_NumOne[i], r2_y_new_NumOne[i]), 1, fc='red')
-    pc3=plt.Circle((r3_x_new_NumOne[i], r3_y_new_NumOne[i]), 1, fc='blue')
+    pc1 = plt.Circle((r1_x_new_NumOne[i], r1_y_new_NumOne[i]), r0, fc='black')
+    pc2= plt.Circle((r2_x_new_NumOne[i], r2_y_new_NumOne[i]), r1, fc='blue')
+    pc3=plt.Circle((r3_x_new_NumOne[i], r3_y_new_NumOne[i]), r2, fc='red')
     ax_1.plot((r1_x_new_NumOne[i], r2_x_new_NumOne[i], r3_x_new_NumOne[i], r1_x_new_NumOne[i]), (r1_y_new_NumOne[i], r2_y_new_NumOne[i], r3_y_new_NumOne[i], r1_y_new_NumOne[i]), linewidth=1, color='magenta')
     ax_1.add_patch(pc1)
     ax_1.add_patch(pc2)
     ax_1.add_patch(pc3)
-    ax_1.plot(r1_x_new_NumOne, r1_y_new_NumOne, linewidth=1, color='red')
-    ax_1.plot(r2_x_new_NumOne, r2_y_new_NumOne, linewidth=1, color='blue')
-    ax_1.plot(r3_x_new_NumOne, r3_y_new_NumOne, linewidth=1, color='black')
+    ax_1.plot(r1_x_new_NumOne, r1_y_new_NumOne, linewidth=1, color='black', label = 'r0')
+    ax_1.plot(r2_x_new_NumOne, r2_y_new_NumOne, linewidth=1, color='blue', label = 'r1')
+    ax_1.plot(r3_x_new_NumOne, r3_y_new_NumOne, linewidth=1, color='red', label = 'r2')
     camera.snap()
+
 animation = camera.animate()
 #animation.save('celluloid_minimal.gif')
 ax_1.grid(True)
