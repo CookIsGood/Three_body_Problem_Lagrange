@@ -41,6 +41,22 @@ def _startAnimate2():
     with open("tel3_Lagrang3anim.py", "r") as f:
         exec(f.read())
 
+def _startGrathOne():
+    with open("GrathOne/Grath#1.py", "r") as f:
+        exec(f.read())
+def _startGrathOne1():
+    with open("GrathOne/Grath#2.py", "r") as f:
+        exec(f.read())
+def _startGrathOne2():
+    with open("GrathOne/Grath#3.py", "r") as f:
+        exec(f.read())
+def _startGrathOne3():
+    return
+def _startGrathOne4():
+    return
+def _startGrathOne5():
+    return
+
 root = Tk()
 root.geometry('1000x700')
 root.title("Плоское частное решение Лагранжа задачи трех тел.")
@@ -53,27 +69,23 @@ filemenu.add_command(label="Сохранить графики...", command=_save
 filemenu.add_command(label="Выход", command=_quit)
 
 
-helpmenu = Menu(mainmenu, tearoff=0)
-testmenu = Menu(mainmenu, tearoff=0)
+
 grathmenu = Menu(mainmenu, tearoff=0)
 animationmenu = Menu(mainmenu, tearoff=0)
 
 
-helpmenu.add_command(label="Помощь")
-helpmenu.add_command(label="О программе")
 
 mainmenu.add_cascade(label="Инструменты", menu=filemenu)
 mainmenu.add_cascade(label="Графики", menu=grathmenu)
 mainmenu.add_cascade(label="Анимация", menu=animationmenu)
-mainmenu.add_cascade(label="Тестирование", menu=testmenu)
-mainmenu.add_cascade(label="Справка", menu=helpmenu)
 
-grathmenu.add_command(label="#1", command=_quit)
-grathmenu.add_command(label="#2", command=_quit)
-grathmenu.add_command(label="#3", command=_quit)
-grathmenu.add_command(label="#4", command=_quit)
-grathmenu.add_command(label="#5", command=_quit)
-grathmenu.add_command(label="#6", command=_quit)
+
+grathmenu.add_command(label="#1", command=_startGrathOne)
+grathmenu.add_command(label="#2", command=_startGrathOne1)
+grathmenu.add_command(label="#3", command=_startGrathOne2)
+#grathmenu.add_command(label="#4", command=_startGrathOne3)
+#grathmenu.add_command(label="#5", command=_startGrathOne4)
+#grathmenu.add_command(label="#6", command=_startGrathOne5)
 
 animationmenu.add_command(label="#1", command=_startAnimate)
 animationmenu.add_command(label="#2", command=_startAnimate1)
@@ -492,13 +504,13 @@ MassLabel7.place(relwidth=0.03, relx=0.87, rely=0.15)
 
 InputText9 = Entry(root)
 InputText9.place(relwidth=0.05, relx=0.80, rely=0.22)
-MassLabel8 = Label(root, text="Количество шагов")
-MassLabel8.place(relwidth=0.12, relx=0.76, rely=0.19)
+MassLabel8 = Label(root, text="Интервал")
+MassLabel8.place(relwidth=0.12, relx=0.765, rely=0.19)
 
 InputText10 = Entry(root)
 InputText10.place(relwidth=0.05, relx=0.80, rely=0.29)
-MassLabel9 = Label(root, text="Шаг интегрирования")
-MassLabel9.place(relwidth=0.12, relx=0.76, rely=0.26)
+MassLabel9 = Label(root, text="Шаг")
+MassLabel9.place(relwidth=0.12, relx=0.765, rely=0.26)
 
 WelcomeLabel = Label(root, text="Введите параметры!")
 WelcomeLabel.place(relwidth=0.12, relx=0.76, rely=0.01)
