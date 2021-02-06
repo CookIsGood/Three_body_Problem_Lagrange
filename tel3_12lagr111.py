@@ -48,7 +48,7 @@ def f(y, t, params):# 14.6 14.6' с 735
     vx1, vy1, vx2, vy2, x1, y1, x2, y2= y
     M0,M1,M2, f1 = params
     return [
-        -f1 * (M0+M2) * x1 / (np.sqrt(x1**2+y1**2) ** 3) +f1 * M2 * ((x2 - x1) /(np.sqrt((x2-x1)**2+(y2-y1)**2) ** 3)-x2/(np.sqrt(x2**2+y2**2))**3),
+        -f1 * (M0+M1) * x1 / (np.sqrt(x1**2+y1**2) ** 3) +f1 * M2 * ((x2 - x1) /(np.sqrt((x2-x1)**2+(y2-y1)**2) ** 3)-x2/(np.sqrt(x2**2+y2**2))**3),
         -f1 * (M0 + M1) * y1 / (np.sqrt(x1 ** 2 + y1 ** 2) ** 3) + f1 * M2 * (
                     (y2 - y1) / (np.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2) ** 3) - y2 / (
                 np.sqrt(x2 ** 2 + y2 ** 2)) ** 3),
