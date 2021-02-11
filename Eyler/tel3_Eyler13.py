@@ -133,14 +133,16 @@ c=M0*(x0*vy0-y0*vx0)+M1*(x1*vy1-y1*vx1)+M2*(x2*vy2-y2*vx2)#проверка 14.3
 U=f1*(M0*M1/(np.sqrt((x1-x0)**2+(y1-y0)**2))+M0*M2/(np.sqrt((x2-x0)**2+(y2-y0)**2))+M2*M1/(np.sqrt((x1-x2)**2+(y1-y2)**2)))#полная силовая функция 14.2
 H=M0/2*(vy0**2+vx0**2)+M1/2*(vy1**2+vx1**2)+M2/2*(vy2**2+vx2**2)-U#проверка 14.3"
 
-k = (y1- y0)/(x1 - x0)
-k1 = (y2 - y1)/(x2 - x1)
-k2 = (y2 - y0)/(x2 - y0)
-k_new = (k+k1+k2)/3
-k_date = k_new[0]/k_new
+rr1 = (y1 - y0)/(x1 - x0)
+rr2 = (y1 - y2)/(x1 - x2)
+rr3 = (y2 - y0)/(x2 - x0)
+#усредненный общий коэффицент
+k1=(rr1/rr2+rr2/rr3+rr1/rr3)/3
+k_date =k1
+#k_date[0]=1
 text_file10 = open("Eyler/Coords/k_NumThree.txt", "w")
 for i in range(len(t)):
-    text_file10.write(str(round(t[i],3)) + ";" + str(round(k_new[i],3)) + "\n")
+    text_file10.write(str(round(t[i],3)) + ";" + str(round(k_date[i],3)) + "\n")
 text_file10.close()
 
 
@@ -156,6 +158,15 @@ for i in range(len(x0)):
 text_file.close()
 text_file1.close()
 text_file2.close()
+
+
+text_file11 = open("Eyler/Coords/H_NumThree.txt", "w")
+text_file12 = open("Eyler/Coords/C_NumThree.txt", "w")
+for i in range(len(t)):
+    text_file11.write(str(round(t[i], 3)) + ";" + str(round(H[i], 3)) + "\n")
+    text_file12.write(str(round(t[i], 3)) + ";" + str(round(c3[i], 3)) + "\n")
+text_file11.close()
+text_file12.close()
 #print(c)
 #print((M0*vx0+M1*vx1+M2*vx2)/(M0+M1+M2))
 #print(H)

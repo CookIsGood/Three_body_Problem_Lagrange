@@ -183,12 +183,24 @@ text_file9.close()
 
 
 
-k = (yy1- yy0)/(xx1 - xx0)
-k1 = (yy2 - yy1)/(xx2 - xx1)
-k2 = (yy2 - yy0)/(xx2 - yy0)
-k_new = (k+k1+k2)/3
-k_date = k_new[0]/k_new
+rr1 = (yy1 - yy0)/(xx1 - xx0)
+rr2 = (yy1 - yy2)/(xx1 - xx2)
+rr3 = (yy2 - yy0)/(xx2 - xx0)
+#усредненный общий коэффицент
+k1=(rr1/rr2+rr2/rr3+rr1/rr3)/3
+k_date =k1
+U=f1*(M0*M1/((x1**2+y1**2)**(1/2))+M0*M2/((x2**2+y2**2)**(1/2))+M2*M1/(((x1-x2)**2+(y1-y2)**2)**(1/2)))#полная силовая функция 14.2
+c3=-1/M*((M1*x1+M2*x2)*(M1*vy1+M2*vy2)-(M1*y1+M2*y2)*(M1*vx1+M2*vx2))+M1*(x1*vy1-y1*vx1)+M2*(x2*vy2-y2*vx2)
+h=-1/2/M*((M1*vx1+M2*vx2)**2+(M1*vy1+M2*vy2)**2)+1/2*M1*(vx1**2+vy1**2)+1/2*M2*(vx2**2+vy2**2)-U
+
 text_file10 = open("Eyler/Coords/k_NumOne.txt", "w")
 for i in range(len(t)):
-    text_file10.write(str(round(t[i],3)) + ";" + str(round(k_new[i],3)) + "\n")
+    text_file10.write(str(round(t[i],3)) + ";" + str(round(k_date[i],3)) + "\n")
 text_file10.close()
+text_file11 = open("Eyler/Coords/H_NumOne.txt", "w")
+text_file12 = open("Eyler/Coords/C_NumOne.txt", "w")
+for i in range(len(t)):
+    text_file11.write(str(round(t[i], 3)) + ";" + str(round(h[i], 3)) + "\n")
+    text_file12.write(str(round(t[i], 3)) + ";" + str(round(c3[i], 3)) + "\n")
+text_file11.close()
+text_file12.close()

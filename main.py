@@ -1,7 +1,7 @@
 from tkinter import Tk, ttk
 import tkinter as tk
 from lagrangeMain import lagrange as TabA
-from CommonMain import Example as TabB
+from CommonMain import common as TabB
 from EylerMain import eyler as TabC
 
 
@@ -130,8 +130,6 @@ if __name__ == '__main__':
     grathmenu2.add_command(label="#2", command=_startGrathOne1)
     grathmenu2.add_command(label="#3", command=_startGrathOne2)
     grathmenu1.add_command(label="#1")
-    grathmenu1.add_command(label="#2")
-    grathmenu1.add_command(label="#3")
     grathmenu3.add_command(label="#1", command=_startGrathOne3)
     grathmenu3.add_command(label="#2", command=_startGrathOne4)
     grathmenu3.add_command(label="#3", command=_startGrathOne5)
@@ -140,8 +138,6 @@ if __name__ == '__main__':
     animationmenu2.add_command(label="#2", command=_startAnimate1)
     animationmenu2.add_command(label="#3", command=_startAnimate2)
     animationmenu1.add_command(label="#1")
-    animationmenu1.add_command(label="#2")
-    animationmenu1.add_command(label="#3")
     animationmenu3.add_command(label="#1", command=_startAnimate3)
     animationmenu3.add_command(label="#2", command=_startAnimate4)
     animationmenu3.add_command(label="#3", command=_startAnimate5)

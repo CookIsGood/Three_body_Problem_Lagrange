@@ -98,7 +98,57 @@ class eyler(tk.Frame):
                 k1_x_NumThree.append(float(x))
                 k1_y_NumThree.append(float(y))
 
+        H_X_Y_data_NumOne = open("Eyler/Coords/H_NumOne.txt", "r").read()
+        H_X_Y_data_NumTwo = open("Eyler/Coords/H_NumTwo.txt", "r").read()
+        H_X_Y_data_NumThree = open("Eyler/Coords/H_NumThree.txt", "r").read()
 
+        H_X_Y_data_NumOne = H_X_Y_data_NumOne.split('\n')
+        H_X_Y_data_NumTwo = H_X_Y_data_NumTwo.split('\n')
+        H_X_Y_data_NumThree = H_X_Y_data_NumThree.split('\n')
+
+        H_x_NumOne, H_y_NumOne, H_x_NumTwo, H_y_NumTwo, H_x_NumThree, H_y_NumThree = [], [], [], [], [], []
+
+        for line in H_X_Y_data_NumOne:
+            if len(line) > 1:
+                x, y = line.split(';')
+                H_x_NumOne.append(float(x))
+                H_y_NumOne.append(float(y))
+        for line in H_X_Y_data_NumTwo:
+            if len(line) > 1:
+                x, y = line.split(';')
+                H_x_NumTwo.append(float(x))
+                H_y_NumTwo.append(float(y))
+        for line in H_X_Y_data_NumThree:
+            if len(line) > 1:
+                x, y = line.split(';')
+                H_x_NumThree.append(float(x))
+                H_y_NumThree.append(float(y))
+
+        C_X_Y_data_NumOne = open("Eyler/Coords/C_NumOne.txt", "r").read()
+        C_X_Y_data_NumTwo = open("Eyler/Coords/C_NumTwo.txt", "r").read()
+        C_X_Y_data_NumThree = open("Eyler/Coords/C_NumThree.txt", "r").read()
+
+        C_X_Y_data_NumOne = C_X_Y_data_NumOne.split('\n')
+        C_X_Y_data_NumTwo = C_X_Y_data_NumTwo.split('\n')
+        C_X_Y_data_NumThree = C_X_Y_data_NumThree.split('\n')
+
+        C_x_NumOne, C_y_NumOne, C_x_NumTwo, C_y_NumTwo, C_x_NumThree, C_y_NumThree = [], [], [], [], [], []
+
+        for line in C_X_Y_data_NumOne:
+            if len(line) > 1:
+                x, y = line.split(';')
+                C_x_NumOne.append(float(x))
+                C_y_NumOne.append(float(y))
+        for line in C_X_Y_data_NumTwo:
+            if len(line) > 1:
+                x, y = line.split(';')
+                C_x_NumTwo.append(float(x))
+                C_y_NumTwo.append(float(y))
+        for line in C_X_Y_data_NumThree:
+            if len(line) > 1:
+                x, y = line.split(';')
+                C_x_NumThree.append(float(x))
+                C_y_NumThree.append(float(y))
 
         M0_M1_data = open('Eyler/Params/M0-M1.txt', 'r').read()
         M2_f_data = open('Eyler/Params/M2-f.txt', 'r').read()
@@ -279,21 +329,21 @@ class eyler(tk.Frame):
         self.ax3.legend()
         # ax3.set_aspect('equal', adjustable='box', anchor='C')
 
-        self.ax4.set(title='#4 График отношения H по времени к начальным значениям')
+        self.ax4.set(title='#4 График  H по времени')
         self.ax4.set_xlabel('t')
         self.ax4.set_ylabel('H')
-        self.ax4.plot(r1_x_new_NumThree, r1_y_new_NumThree, linewidth=1, color='black', label='r0')
-        self.ax4.plot(r2_x_new_NumThree, r2_y_new_NumThree, linewidth=1, color='blue', label='r1')
-        self.ax4.plot(r3_x_new_NumThree, r3_y_new_NumThree, linewidth=1, color='red', label='r2')
+        self.ax4.plot(H_x_NumOne, H_y_NumOne, linewidth=1, color='orange', label='h0')
+        self.ax4.plot(H_x_NumTwo, H_y_NumTwo, linewidth=1, color='blue', label='h1')
+        self.ax4.plot(H_x_NumThree, H_y_NumThree, linewidth=1, color='red', label='h2')
         self.ax4.legend()
         # ax4.set_aspect('equal', adjustable='box', anchor='C')
 
-        self.ax5.set(title='#5 График отношения C по времени к начальным значениям')
+        self.ax5.set(title='#5 График  C по времени')
         self.ax5.set_xlabel('t')
         self.ax5.set_ylabel('C')
-        self.ax5.plot(r1_x_new_NumThree, r1_y_new_NumThree, linewidth=1, color='black', label='r0')
-        self.ax5.plot(r2_x_new_NumThree, r2_y_new_NumThree, linewidth=1, color='blue', label='r1')
-        self.ax5.plot(r3_x_new_NumThree, r3_y_new_NumThree, linewidth=1, color='red', label='r2')
+        self.ax5.plot(C_x_NumOne, C_y_NumOne, linewidth=1, color='orange', label='c0')
+        self.ax5.plot(C_x_NumTwo, C_y_NumTwo, linewidth=1, color='blue', label='c1')
+        self.ax5.plot(C_x_NumThree, C_y_NumThree, linewidth=1, color='red', label='c2')
         self.ax5.legend()
         # ax4.set_aspect('equal', adjustable='box', anchor='C')
 
