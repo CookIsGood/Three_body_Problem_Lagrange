@@ -2,7 +2,7 @@ from tkinter import Tk, ttk
 import tkinter as tk
 from lagrangeMain import lagrange as TabA
 from CommonMain import Example as TabB
-from EylerMain import Example as TabC
+from EylerMain import eyler as TabC
 
 
 def _quit():
@@ -23,6 +23,20 @@ def _startAnimate2():
     with open("Lagrange/tel3_Lagrang3anim.py", "r") as f:
         exec(f.read())
 
+def _startAnimate3():
+    with open("Eyler/tel3_2Eyler1_anim.py", "r") as f:
+        exec(f.read())
+
+
+def _startAnimate4():
+    with open("Eyler/tel3_Eyler12anim.py", "r") as f:
+        exec(f.read())
+
+
+def _startAnimate5():
+    with open("Eyler/tel3_Eyler13anim.py", "r") as f:
+        exec(f.read())
+
 
 def _startGrathOne():
     with open("Lagrange/GrathOne/Grath#1.py", "r") as f:
@@ -36,6 +50,19 @@ def _startGrathOne1():
 
 def _startGrathOne2():
     with open("Lagrange/GrathOne/Grath#3.py", "r") as f:
+        exec(f.read())
+def _startGrathOne3():
+    with open("Eyler/GrathOne/Grath#1.py", "r") as f:
+        exec(f.read())
+
+
+def _startGrathOne4():
+    with open("Eyler/GrathOne/Grath#2.py", "r") as f:
+        exec(f.read())
+
+
+def _startGrathOne5():
+    with open("Eyler/GrathOne/Grath#3.py", "r") as f:
         exec(f.read())
 
 
@@ -105,9 +132,9 @@ if __name__ == '__main__':
     grathmenu1.add_command(label="#1")
     grathmenu1.add_command(label="#2")
     grathmenu1.add_command(label="#3")
-    grathmenu3.add_command(label="#1")
-    grathmenu3.add_command(label="#2")
-    grathmenu3.add_command(label="#3")
+    grathmenu3.add_command(label="#1", command=_startGrathOne3)
+    grathmenu3.add_command(label="#2", command=_startGrathOne4)
+    grathmenu3.add_command(label="#3", command=_startGrathOne5)
 
     animationmenu2.add_command(label="#1", command=_startAnimate)
     animationmenu2.add_command(label="#2", command=_startAnimate1)
@@ -115,8 +142,8 @@ if __name__ == '__main__':
     animationmenu1.add_command(label="#1")
     animationmenu1.add_command(label="#2")
     animationmenu1.add_command(label="#3")
-    animationmenu3.add_command(label="#1")
-    animationmenu3.add_command(label="#2")
-    animationmenu3.add_command(label="#3")
+    animationmenu3.add_command(label="#1", command=_startAnimate3)
+    animationmenu3.add_command(label="#2", command=_startAnimate4)
+    animationmenu3.add_command(label="#3", command=_startAnimate5)
     root.geometry("1000x700")
     root.mainloop()
