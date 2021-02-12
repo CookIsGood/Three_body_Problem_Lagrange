@@ -12,15 +12,6 @@ import time
 
 class common(tk.Frame):
 
-    def _save_figure(self):
-        if os.path.exists("Image"):
-            print("Папка Image уже существует")
-        else:
-            os.mkdir("Image")
-            print("Папка Image создана")
-        time = datetime.today().strftime("%d%m%Y_%H%M%S")
-        plt.savefig("Eyler/Image/" + str(time) + "Image.png")
-
 
 
     def __init__(self, parent):
@@ -29,153 +20,136 @@ class common(tk.Frame):
         self.init_ui()
 
     def _saveLog(self):
-        if os.path.exists("Eyler/Logs"):
+        if os.path.exists("CommonProblem/Logs"):
             print("Папка Logs уже существует")
         else:
-            os.mkdir("Eyler/Logs")
+            os.mkdir("CommonProblem/Logs")
             print("Папка Logs создана")
         text = self.LogText.get("1.0", "end-1c")
         time = datetime.today().strftime("%d%m%Y_%H%M%S")
-        text_file = open("Eyler/Logs/" + str(time) + "Log.txt", "w")
+        text_file = open("CommonProblem/Logs/" + str(time) + "Log.txt", "w")
         text_file.write(str(text))
         text_file.close()
 
     def _useParams(self):
-        M0, M1, M2, f1, c, e, F, vp, steps, t = self.InputText.get(), self.InputText2.get(), self.InputText3.get(), self.InputText4.get(), self.InputText5.get(), self.InputText6.get(), self.InputText7.get(), self.InputText8.get(), self.InputText9.get(), self.InputText10.get()
 
-        if os.path.exists("Eyler/Params"):
+        M0, M1, M2, steps, t, f1 = self.InputText.get(), self.InputText2.get(), self.InputText3.get(), self.InputText9.get(), self.InputText10.get(), self.InputText11.get()
+        r1x, r1y, r2x, r2y  = self.InputText4.get(), self.InputText6.get(), self.InputText7.get(), self.InputText8.get()
+        v1x, v1y, v2x, v2y = self.InputText01.get(), self.InputText02.get(), self.InputText03.get(), self.InputText04.get()
+        if os.path.exists("CommonProblem/Params"):
             print("Папка Params уже существует")
         else:
-            os.mkdir("Eyler/Params")
+            os.mkdir("CommonProblem/Params")
             print("Папка Params создана")
 
-        text_file, text_file1, text_file2, text_file3, text_file4 = open("Eyler/Params/M0-M1.txt", "w"), open(
-            "Eyler/Params/M2-f.txt",
-            "w"), open(
-            "Eyler/Params/c-e.txt", "w"), open("Eyler/Params/F-vp.txt", "w"), open("Eyler/Params/steps-t.txt", "w")
-
+        text_file, text_file1, text_file01= open("CommonProblem/Params/M0-M1.txt", "w"), open(
+            "CommonProblem/Params/M2-f.txt",
+            "w"), open("CommonProblem/Params/steps-t.txt", "w")
+        text_file2, text_file3 = open("CommonProblem/Params/r1x-r1y.txt", "w"),open("CommonProblem/Params/r2x-r2y.txt", "w")
+        text_file4, text_file5 = open("CommonProblem/Params/v1x-v1y.txt", "w"),open("CommonProblem/Params/v2x-v2y.txt", "w")
         text_file.write(str(M0) + ";" + str(M1) + "\n")
         text_file1.write(str(M2) + ";" + str(f1) + "\n")
-        text_file2.write(str(c) + ";" + str(e) + "\n")
-        text_file3.write(str(F) + ";" + str(vp) + "\n")
-        text_file4.write(str(steps) + ";" + str(t) + "\n")
+        text_file01.write(str(steps) + ";" + str(t) + "\n")
+        text_file2.write(str(r1x) + ";" + str(r1y) + "\n")
+        text_file3.write(str(r2x) + ";" + str(r2y) + "\n")
+        text_file4.write(str(v1x) + ";" + str(v1y) + "\n")
+        text_file5.write(str(v2x) + ";" + str(v2y) + "\n")
+
         text_file.close()
         text_file1.close()
         text_file2.close()
         text_file3.close()
         text_file4.close()
-        with open("Eyler/tel3_2Eyler1.py", "r") as f:
+        text_file5.close()
+        text_file01.close()
+
+        with open("CommonProblem/tel3_0.py", "r") as f:
             exec(f.read())
-        with open("Eyler/tel3_Eyler12.py", "r") as f:
-            exec(f.read())
-        with open("Eyler/tel3_Eyler13.py", "r") as f:
-            exec(f.read())
+
 
     def _start_grath(self):
-        k1_X_Y_data_NumOne = open("Eyler/Coords/k_NumOne.txt", "r").read()
-        k1_X_Y_data_NumTwo = open("Eyler/Coords/k_NumTwo.txt", "r").read()
-        k1_X_Y_data_NumThree = open("Eyler/Coords/k_NumThree.txt", "r").read()
 
-        k1_X_Y_data_NumOne = k1_X_Y_data_NumOne.split('\n')
-        k1_X_Y_data_NumTwo = k1_X_Y_data_NumTwo.split('\n')
-        k1_X_Y_data_NumThree = k1_X_Y_data_NumThree.split('\n')
-
-        k1_x_NumOne, k1_y_NumOne, k1_x_NumTwo, k1_y_NumTwo, k1_x_NumThree, k1_y_NumThree = [], [], [], [], [], []
-
-        for line in k1_X_Y_data_NumOne:
-            if len(line) > 1:
-                x, y = line.split(';')
-                k1_x_NumOne.append(float(x))
-                k1_y_NumOne.append(float(y))
-        for line in k1_X_Y_data_NumTwo:
-            if len(line) > 1:
-                x, y = line.split(';')
-                k1_x_NumTwo.append(float(x))
-                k1_y_NumTwo.append(float(y))
-        for line in k1_X_Y_data_NumThree:
-            if len(line) > 1:
-                x, y = line.split(';')
-                k1_x_NumThree.append(float(x))
-                k1_y_NumThree.append(float(y))
-
-        H_X_Y_data_NumOne = open("Eyler/Coords/H_NumOne.txt", "r").read()
-        H_X_Y_data_NumTwo = open("Eyler/Coords/H_NumTwo.txt", "r").read()
-        H_X_Y_data_NumThree = open("Eyler/Coords/H_NumThree.txt", "r").read()
+        H_X_Y_data_NumOne = open("CommonProblem/Coords/H_NumOne.txt", "r").read()
 
         H_X_Y_data_NumOne = H_X_Y_data_NumOne.split('\n')
-        H_X_Y_data_NumTwo = H_X_Y_data_NumTwo.split('\n')
-        H_X_Y_data_NumThree = H_X_Y_data_NumThree.split('\n')
 
-        H_x_NumOne, H_y_NumOne, H_x_NumTwo, H_y_NumTwo, H_x_NumThree, H_y_NumThree = [], [], [], [], [], []
+        H_x_NumOne, H_y_NumOne = [], []
 
         for line in H_X_Y_data_NumOne:
             if len(line) > 1:
                 x, y = line.split(';')
                 H_x_NumOne.append(float(x))
                 H_y_NumOne.append(float(y))
-        for line in H_X_Y_data_NumTwo:
-            if len(line) > 1:
-                x, y = line.split(';')
-                H_x_NumTwo.append(float(x))
-                H_y_NumTwo.append(float(y))
-        for line in H_X_Y_data_NumThree:
-            if len(line) > 1:
-                x, y = line.split(';')
-                H_x_NumThree.append(float(x))
-                H_y_NumThree.append(float(y))
 
-        C_X_Y_data_NumOne = open("Eyler/Coords/C_NumOne.txt", "r").read()
-        C_X_Y_data_NumTwo = open("Eyler/Coords/C_NumTwo.txt", "r").read()
-        C_X_Y_data_NumThree = open("Eyler/Coords/C_NumThree.txt", "r").read()
+        C_X_Y_data_NumOne = open("CommonProblem/Coords/C_NumOne.txt", "r").read()
 
         C_X_Y_data_NumOne = C_X_Y_data_NumOne.split('\n')
-        C_X_Y_data_NumTwo = C_X_Y_data_NumTwo.split('\n')
-        C_X_Y_data_NumThree = C_X_Y_data_NumThree.split('\n')
 
-        C_x_NumOne, C_y_NumOne, C_x_NumTwo, C_y_NumTwo, C_x_NumThree, C_y_NumThree = [], [], [], [], [], []
+        C_x_NumOne, C_y_NumOne = [], []
 
         for line in C_X_Y_data_NumOne:
             if len(line) > 1:
                 x, y = line.split(';')
                 C_x_NumOne.append(float(x))
                 C_y_NumOne.append(float(y))
-        for line in C_X_Y_data_NumTwo:
-            if len(line) > 1:
-                x, y = line.split(';')
-                C_x_NumTwo.append(float(x))
-                C_y_NumTwo.append(float(y))
-        for line in C_X_Y_data_NumThree:
-            if len(line) > 1:
-                x, y = line.split(';')
-                C_x_NumThree.append(float(x))
-                C_y_NumThree.append(float(y))
 
-        M0_M1_data = open('Eyler/Params/M0-M1.txt', 'r').read()
-        M2_f_data = open('Eyler/Params/M2-f.txt', 'r').read()
-        c_e_data = open('Eyler/Params/c-e.txt', 'r').read()
-        F_vp_data = open('Eyler/Params/F-vp.txt', 'r').read()
-        steps_t_data = open('Eyler/Params/steps-t.txt', 'r').read()
+        M0_M1_data = open('CommonProblem/Params/M0-M1.txt', 'r').read()
+        M2_f_data = open('CommonProblem/Params/M2-f.txt', 'r').read()
+        steps_t_data = open('CommonProblem/Params/steps-t.txt', 'r').read()
+        r0x_r0y_data = open('CommonProblem/Coords/coord0_NumOne.txt', 'r').read()
+        r1x_r1y_data = open('CommonProblem/Coords/coord1_NumOne.txt', 'r').read()
+        r2x_r2y_data = open('CommonProblem/Coords/coord2_NumOne.txt', 'r').read()
+        v0x_v0y_data = open('CommonProblem/Coords/speed0_NumOne.txt', 'r').read()
+        v1x_v1y_data = open('CommonProblem/Coords/speed1_NumOne.txt', 'r').read()
+        v2x_v2y_data = open('CommonProblem/Coords/speed2_NumOne.txt', 'r').read()
 
         M0_M1 = M0_M1_data.split('\n')
         M2_f = M2_f_data.split('\n')
-        c_e = c_e_data.split('\n')
-        F_vp = F_vp_data.split('\n')
         steps_t = steps_t_data.split('\n')
 
-        M0_date = []
-        M1_date = []
+        r1x_r1y = r1x_r1y_data.split('\n')
+        r2x_r2y = r2x_r2y_data.split('\n')
+        v1x_v1y = v1x_v1y_data.split('\n')
+        v2x_v2y = v2x_v2y_data.split('\n')
+        r0x_r0y = r0x_r0y_data.split('\n')
+        v0x_v0y = v0x_v0y_data.split('\n')
 
-        M2_date = []
-        f_date = []
+        M0_date,M1_date, M2_date, f_date, steps_date,t_date = [],[],[],[],[],[]
 
-        c_date = []
-        e_date = []
+        r1x_date, r1y_date, r2x_date, r2y_date, r0x_date, r0y_date = [],[],[],[], [], []
+        v1x_date, v1y_date, v2x_date, v2y_date, v0x_date, v0y_date = [],[],[],[], [],[]
 
-        F_date = []
-        vp_date = []
+        for line in r1x_r1y:
+            if len(line) > 1:
+                x, y = line.split(';')
+                r1x_date.append(float(x))
+                r1y_date.append(float(y))
+        for line in r2x_r2y:
+            if len(line) > 1:
+                x, y = line.split(';')
+                r2x_date.append(float(x))
+                r2y_date.append(float(y))
+        for line in r0x_r0y:
+            if len(line) > 1:
+                x, y = line.split(';')
+                r0x_date.append(float(x))
+                r0y_date.append(float(y))
+        for line in v1x_v1y:
+            if len(line) > 1:
+                x, y = line.split(';')
+                v1x_date.append(float(x))
+                v1y_date.append(float(y))
+        for line in v2x_v2y:
+            if len(line) > 1:
+                x, y = line.split(';')
+                v2x_date.append(float(x))
+                v2y_date.append(float(y))
+        for line in v0x_v0y:
+            if len(line) > 1:
+                x, y = line.split(';')
+                v0x_date.append(float(x))
+                v0y_date.append(float(y))
 
-        steps_date = []
-        t_date = []
         for line in M0_M1:
             if len(line) > 1:
                 x, y = line.split(';')
@@ -186,190 +160,58 @@ class common(tk.Frame):
                 x, y = line.split(';')
                 M2_date.append(float(x))
                 f_date.append(float(y))
-        for line in c_e:
-            if len(line) > 1:
-                x, y = line.split(';')
-                c_date.append(float(x))
-                e_date.append(float(y))
-        for line in F_vp:
-            if len(line) > 1:
-                x, y = line.split(';')
-                F_date.append(float(x))
-                vp_date.append(float(y))
         for line in steps_t:
             if len(line) > 1:
                 x, y = line.split(';')
                 steps_date.append(float(x))
                 t_date.append(float(y))
 
-        r1_X_Y_data_NumOne, r2_X_Y_data_NumOne, r3_X_Y_data_NumOne = open('Eyler/Coords/coord0_NumOne.txt', 'r').read(), open(
-            'Eyler/Coords/coord1_NumOne.txt', 'r').read(), open('Eyler/Coords/coord2_NumOne.txt', 'r').read()
-        r1_X_Y_data_NumTwo, r2_X_Y_data_NumTwo, r3_X_Y_data_NumTwo = open('Eyler/Coords/coord0_NumTwo.txt', 'r').read(), open(
-            'Eyler/Coords/coord1_NumTwo.txt', 'r').read(), open('Eyler/Coords/coord2_NumTwo.txt', 'r').read()
-        r1_X_Y_data_NumThree, r2_X_Y_data_NumThree, r3_X_Y_data_NumThree = open('Eyler/Coords/coord0_NumThree.txt',
-                                                                                'r').read(), open(
-            'Eyler/Coords/coord1_NumThree.txt', 'r').read(), open('Eyler/Coords/coord2_NumThree.txt', 'r').read()
-        v1_X_Y_data_NumOne, v2_X_Y_data_NumOne, v3_X_Y_data_NumOne = open('Eyler/Coords/speed0_NumOne.txt', 'r').read(), open(
-            'Eyler/Coords/speed1_NumOne.txt', 'r').read(), open('Eyler/Coords/speed2_NumOne.txt', 'r').read()
 
-        r1_X_Y_data_NumOne, r2_X_Y_data_NumOne, r3_X_Y_data_NumOne = r1_X_Y_data_NumOne.split(
-            '\n'), r2_X_Y_data_NumOne.split('\n'), r3_X_Y_data_NumOne.split('\n')
-        r1_X_Y_data_NumTwo, r2_X_Y_data_NumTwo, r3_X_Y_data_NumTwo = r1_X_Y_data_NumTwo.split(
-            '\n'), r2_X_Y_data_NumTwo.split('\n'), r3_X_Y_data_NumTwo.split('\n')
-        r1_X_Y_data_NumThree, r2_X_Y_data_NumThree, r3_X_Y_data_NumThree = r1_X_Y_data_NumThree.split(
-            '\n'), r2_X_Y_data_NumThree.split('\n'), r3_X_Y_data_NumThree.split('\n')
-        v1_X_Y_data_NumOne, v2_X_Y_data_NumOne, v3_X_Y_data_NumOne = v1_X_Y_data_NumOne.split(
-            '\n'), v2_X_Y_data_NumOne.split('\n'), v3_X_Y_data_NumOne.split('\n')
-
-        r1_x_new_NumOne, r1_y_new_NumOne, r2_x_new_NumOne, r2_y_new_NumOne, r3_x_new_NumOne, r3_y_new_NumOne = [], [], [], [], [], []
-        r1_x_new_NumTwo, r1_y_new_NumTwo, r2_x_new_NumTwo, r2_y_new_NumTwo, r3_x_new_NumTwo, r3_y_new_NumTwo = [], [], [], [], [], []
-        r1_x_new_NumThree, r1_y_new_NumThree, r2_x_new_NumThree, r2_y_new_NumThree, r3_x_new_NumThree, r3_y_new_NumThree = [], [], [], [], [], []
-        v1_x_new_NumOne, v1_y_new_NumOne, v2_x_new_NumOne, v2_y_new_NumOne, v3_x_new_NumOne, v3_y_new_NumOne = [], [], [], [], [], []
-
-        for line in r1_X_Y_data_NumOne:
-            if len(line) > 1:
-                x, y = line.split(';')
-                r1_x_new_NumOne.append(float(x))
-                r1_y_new_NumOne.append(float(y))
-        for line in r2_X_Y_data_NumOne:
-            if len(line) > 1:
-                x, y = line.split(';')
-                r2_x_new_NumOne.append(float(x))
-                r2_y_new_NumOne.append(float(y))
-
-        for line in r3_X_Y_data_NumOne:
-            if len(line) > 1:
-                x, y = line.split(';')
-                r3_x_new_NumOne.append(float(x))
-                r3_y_new_NumOne.append(float(y))
-        for line in v1_X_Y_data_NumOne:
-            if len(line) > 1:
-                x, y = line.split(';')
-                v1_x_new_NumOne.append(float(x))
-                v1_y_new_NumOne.append(float(y))
-        for line in v2_X_Y_data_NumOne:
-            if len(line) > 1:
-                x, y = line.split(';')
-                v2_x_new_NumOne.append(float(x))
-                v2_y_new_NumOne.append(float(y))
-        for line in v3_X_Y_data_NumOne:
-            if len(line) > 1:
-                x, y = line.split(';')
-                v3_x_new_NumOne.append(float(x))
-                v3_y_new_NumOne.append(float(y))
-
-        for line in r1_X_Y_data_NumTwo:
-            if len(line) > 1:
-                x, y = line.split(';')
-                r1_x_new_NumTwo.append(float(x))
-                r1_y_new_NumTwo.append(float(y))
-        for line in r2_X_Y_data_NumTwo:
-            if len(line) > 1:
-                x, y = line.split(';')
-                r2_x_new_NumTwo.append(float(x))
-                r2_y_new_NumTwo.append(float(y))
-        for line in r3_X_Y_data_NumTwo:
-            if len(line) > 1:
-                x, y = line.split(';')
-                r3_x_new_NumTwo.append(float(x))
-                r3_y_new_NumTwo.append(float(y))
-
-        for line in r1_X_Y_data_NumThree:
-            if len(line) > 1:
-                x, y = line.split(';')
-                r1_x_new_NumThree.append(float(x))
-                r1_y_new_NumThree.append(float(y))
-        for line in r2_X_Y_data_NumThree:
-            if len(line) > 1:
-                x, y = line.split(';')
-                r2_x_new_NumThree.append(float(x))
-                r2_y_new_NumThree.append(float(y))
-        for line in r3_X_Y_data_NumThree:
-            if len(line) > 1:
-                x, y = line.split(';')
-                r3_x_new_NumThree.append(float(x))
-                r3_y_new_NumThree.append(float(y))
 
         time = datetime.now()
 
-        #InpTxt, InpTxt2, InpTxt3, InpTxt4, InpTxt5, InpTxt6, InpTxt7, InpTxt8, InpTxt9, InpTxt10 = self.InputText.get(), self.InputText2.get(), self.InputText3.get(), self.InputText4.get(), self.InputText5.get(), self.InputText6.get(), self.InputText7.get(), self.InputText8.get(), self.InputText9.get(), self.InputText10.get()
 
         self.ax1.clear()
         self.ax2.clear()
         self.ax3.clear()
-        self.ax4.clear()
-        self.ax5.clear()
-        self.ax6.clear()
 
-        self.ax1.set(title='#1 Плоское частное решение Эйлера задачи трех тел,\n расчет уравнением Ляпунова')
+
+        self.ax1.set(title='#1 Общее решение задачи трех тел.')
         self.ax1.set_xlabel('x')
         self.ax1.set_ylabel('y')
-        self.ax1.plot(r1_x_new_NumOne, r1_y_new_NumOne, linewidth=1, color='black', label='r0')
-        self.ax1.plot(r2_x_new_NumOne, r2_y_new_NumOne, linewidth=1, color='blue', label='r1')
-        self.ax1.plot(r3_x_new_NumOne, r3_y_new_NumOne, linewidth=1, color='red', label='r2')
+        self.ax1.plot(r0x_date, r0y_date, linewidth=1, color='black', label='r0')
+        self.ax1.plot(r1x_date, r1y_date, linewidth=1, color='blue', label='r1')
+        self.ax1.plot(r2x_date, r2y_date, linewidth=1, color='red', label='r2')
         self.ax1.legend()
         # ax1.legend(bbox_to_anchor=(0.165, 1.3))
         # ax1.set_aspect('equal', adjustable='box', anchor='C')
 
-        self.ax2.set(title='#2 Плоское частное решение Эйлера задачи трех тел,\n метод относительных координат')
-        self.ax2.set_xlabel('x')
-        self.ax2.set_ylabel('y')
-        self.ax2.plot(r1_x_new_NumTwo, r1_y_new_NumTwo, linewidth=1, color='black', label='r0')
-        self.ax2.plot(r2_x_new_NumTwo, r2_y_new_NumTwo, linewidth=1, color='blue', label='r1')
-        self.ax2.plot(r3_x_new_NumTwo, r3_y_new_NumTwo, linewidth=1, color='red', label='r2')
+        self.ax2.set(title='#2 График  H по времени')
+        self.ax2.set_xlabel('t')
+        self.ax2.set_ylabel('H')
+        self.ax2.plot(H_x_NumOne, H_y_NumOne, linewidth=1, color='orange', label='h0')
         self.ax2.legend()
-        # ax2.set_aspect('equal', adjustable='box', anchor='C')
+        # ax4.set_aspect('equal', adjustable='box', anchor='C')
 
-        self.ax3.set(title='#3 Плоское частное решение Эйлера задачи трех тел,\n метод барицентрических координат')
-        self.ax3.set_xlabel('x')
-        self.ax3.set_ylabel('y')
-        self.ax3.plot(r1_x_new_NumThree, r1_y_new_NumThree, linewidth=1, color='black', label='r0')
-        self.ax3.plot(r2_x_new_NumThree, r2_y_new_NumThree, linewidth=1, color='blue', label='r1')
-        self.ax3.plot(r3_x_new_NumThree, r3_y_new_NumThree, linewidth=1, color='red', label='r2')
+        self.ax3.set(title='#3 График  C по времени')
+        self.ax3.set_xlabel('t')
+        self.ax3.set_ylabel('C')
+        self.ax3.plot(C_x_NumOne, C_y_NumOne, linewidth=1, color='orange', label='c0')
         self.ax3.legend()
-        # ax3.set_aspect('equal', adjustable='box', anchor='C')
-
-        self.ax4.set(title='#4 График  H по времени')
-        self.ax4.set_xlabel('t')
-        self.ax4.set_ylabel('H')
-        self.ax4.plot(H_x_NumOne, H_y_NumOne, linewidth=1, color='orange', label='h0')
-        self.ax4.plot(H_x_NumTwo, H_y_NumTwo, linewidth=1, color='blue', label='h1')
-        self.ax4.plot(H_x_NumThree, H_y_NumThree, linewidth=1, color='red', label='h2')
-        self.ax4.legend()
         # ax4.set_aspect('equal', adjustable='box', anchor='C')
-
-        self.ax5.set(title='#5 График  C по времени')
-        self.ax5.set_xlabel('t')
-        self.ax5.set_ylabel('C')
-        self.ax5.plot(C_x_NumOne, C_y_NumOne, linewidth=1, color='orange', label='c0')
-        self.ax5.plot(C_x_NumTwo, C_y_NumTwo, linewidth=1, color='blue', label='c1')
-        self.ax5.plot(C_x_NumThree, C_y_NumThree, linewidth=1, color='red', label='c2')
-        self.ax5.legend()
-        # ax4.set_aspect('equal', adjustable='box', anchor='C')
-
-        self.ax6.set(title='#6 График отношения равенства\n прямой по времени к начальным значениям')
-        self.ax6.set_xlabel('t')
-        self.ax6.set_ylabel('k')
-        self.ax6.plot(k1_x_NumOne, k1_y_NumOne, linewidth=1, color='orange', label='k1')
-        self.ax6.plot(k1_x_NumTwo, k1_y_NumTwo, linewidth=1, color='blue', label='k2')
-        self.ax6.plot(k1_x_NumThree, k1_y_NumThree, linewidth=1, color='red', label='k3')
-        self.ax6.legend()
-        # ax5.set_aspect('equal', adjustable='box', anchor='C')
 
         self.canvas.draw_idle()
-        text = f"{time}:\nM0 = {M0_date[0]} M1 = {M1_date[0]} M2 = {M2_date[0]}\nf = {f_date[0]} c = {c_date[0]} e = {e_date[0]}\nF = {F_date[0]} vp = {vp_date[0]}\nКоличество шагов = {steps_date[0]}\nШаг интегрирования = {t_date[0]}\n" \
-               f"r_1=(x_1,y_1)=({round(r1_x_new_NumOne[0], 7)},{round(r1_y_new_NumOne[0], 7)})\nr_2=(x_2,y_2)=({round(r2_x_new_NumOne[0], 7)},{round(r2_y_new_NumOne[0], 7)})\nr_3=(x_3,y_3)=({round(r3_x_new_NumOne[0], 7)},{round(r3_y_new_NumOne[0], 7)})\n" \
-               f"v_1=(xv_1,yv_1)=({round(v1_x_new_NumOne[0], 7)},{round(v1_y_new_NumOne[0], 7)})\nv_2=(xv_2,yv_2)=({round(v2_x_new_NumOne[0], 7)},{round(v2_y_new_NumOne[0], 7)})\nv_3=(xv_3,yv_3)=({round(v3_x_new_NumOne[0], 7)},{round(v3_y_new_NumOne[0], 7)})\n\n"
+        text = f"{time}:\nM0 = {M0_date[0]} M1 = {M1_date[0]} M2 = {M2_date[0]}\nr0(x,y) = ({round(r0x_date[0],6)},{round(r0y_date[0],6)})\nr1(x,y) = ({round(r1x_date[0],6)},{round(r1y_date[0],6)})\nr2(x,y) = ({round(r2x_date[0],)},{round(r2y_date[0],6)})\nКоличество шагов = {steps_date[0]}\nШаг интегрирования = {t_date[0]}\n"
 
         self.LogText.insert(1.0, text)
 
     def init_ui(self):
 
 
-        self.fig, (self.ax1, self.ax2, self.ax3, self.ax4, self.ax5, self.ax6) = plt.subplots(6)
+        self.fig, (self.ax1, self.ax2, self.ax3) = plt.subplots(3)
 
         self.canvas = FigureCanvasTkAgg(self.fig, master=self)
-        self.canvas.get_tk_widget().place(relwidth=0.6, relheight=5, relx=0, rely=0)
+        self.canvas.get_tk_widget().place(relwidth=0.6, relheight=4, relx=0, rely=0)
 
         self.scrollbar = tk.Scrollbar(master=self, orient=tk.VERTICAL)
         self.scrollbar["command"] = self.canvas.get_tk_widget().yview
@@ -394,6 +236,11 @@ class common(tk.Frame):
         self.MassLabel2 = tk.Label(self, text="M2=")
         self.MassLabel2.place(relwidth=0.03, relx=0.87, rely=0.05)
 
+        self.InputText11 = tk.Entry(self)
+        self.InputText11.place(relwidth=0.05, relx=0.8, rely=0.1)
+        self.MassLabel11 = tk.Label(self, text="f=")
+        self.MassLabel11.place(relwidth=0.03, relx=0.77, rely=0.1)
+
         self.InputText4 = tk.Entry(self)
         self.InputText4.place(relwidth=0.05, relx=0.7, rely=0.1)
         self.MassLabel3 = tk.Label(self, text="r1x=")
@@ -414,28 +261,51 @@ class common(tk.Frame):
         self.MassLabel7 = tk.Label(self, text="r2y=")
         self.MassLabel7.place(relwidth=0.03, relx=0.87, rely=0.15)
 
+
+
+        self.InputText01 = tk.Entry(self)
+        self.InputText01.place(relwidth=0.05, relx=0.7, rely=0.2)
+        self.MassLabel01 = tk.Label(self, text="v1x=")
+        self.MassLabel01.place(relwidth=0.03, relx=0.67, rely=0.2)
+
+        self.InputText02 = tk.Entry(self)
+        self.InputText02.place(relwidth=0.05, relx=0.9, rely=0.2)
+        self.MassLabel02 = tk.Label(self, text="v1y=")
+        self.MassLabel02.place(relwidth=0.03, relx=0.87, rely=0.2)
+
+        self.InputText03 = tk.Entry(self)
+        self.InputText03.place(relwidth=0.05, relx=0.7, rely=0.25)
+        self.MassLabel03 = tk.Label(self, text="v2x=")
+        self.MassLabel03.place(relwidth=0.03, relx=0.67, rely=0.25)
+
+        self.InputText04 = tk.Entry(self)
+        self.InputText04.place(relwidth=0.05, relx=0.9, rely=0.25)
+        self.MassLabel04 = tk.Label(self, text="v2y=")
+        self.MassLabel04.place(relwidth=0.03, relx=0.87, rely=0.25)
+
+
         self.InputText9 = tk.Entry(self)
-        self.InputText9.place(relwidth=0.05, relx=0.80, rely=0.22)
+        self.InputText9.place(relwidth=0.05, relx=0.80, rely=0.32)
         self.MassLabel8 = tk.Label(self, text="Интервал")
-        self.MassLabel8.place(relwidth=0.12, relx=0.765, rely=0.19)
+        self.MassLabel8.place(relwidth=0.12, relx=0.765, rely=0.29)
 
         self.InputText10 = tk.Entry(self)
-        self.InputText10.place(relwidth=0.05, relx=0.80, rely=0.29)
+        self.InputText10.place(relwidth=0.05, relx=0.80, rely=0.39)
         self.MassLabel9 = tk.Label(self, text="Шаг")
-        self.MassLabel9.place(relwidth=0.12, relx=0.765, rely=0.26)
+        self.MassLabel9.place(relwidth=0.12, relx=0.765, rely=0.36)
 
         self.WelcomeLabel = tk.Label(self, text="Введите параметры!")
-        self.WelcomeLabel.place(relwidth=0.12, relx=0.76, rely=0.01)
+        self.WelcomeLabel.place(relwidth=0.12, relx=0.76, rely=0.00)
 
         self.StartButton = tk.Button(master=self, text='Построить графики!',
                                      command=self._start_grath)
-        self.StartButton.place(relx=0.85, rely=0.33)
+        self.StartButton.place(relx=0.85, rely=0.43)
 
         self.TestButton = tk.Button(self, text="Применить параметры!", command=self._useParams).place(relx=0.68,
-                                                                                                      rely=0.33)
+                                                                                                      rely=0.43)
 
         self.LogLabel = tk.Label(self,
-                                 text="Здесь будет отображаться информация\n о введенных вами данными и начальные условия точек!")
+                                 text="Здесь будет отображаться информация\n о введенных вами данных!")
         self.LogLabel.place(relwidth=0.35, relheight=0.05, relx=0.635, rely=0.69)
 
         self.SaveDataButton = tk.Button(master=self, text='Сохранить данные', command=self._saveLog)

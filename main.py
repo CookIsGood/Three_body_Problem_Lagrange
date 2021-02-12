@@ -65,6 +65,11 @@ def _startGrathOne5():
     with open("Eyler/GrathOne/Grath#3.py", "r") as f:
         exec(f.read())
 
+def _startGrathOne6():
+    with open("CommonProblem/GrathOne/Grath#1.py", "r") as f:
+        exec(f.read())
+
+
 
 class MainWindow(tk.Frame):
     def __init__(self, parent):
@@ -129,7 +134,7 @@ if __name__ == '__main__':
     grathmenu2.add_command(label="#1", command=_startGrathOne)
     grathmenu2.add_command(label="#2", command=_startGrathOne1)
     grathmenu2.add_command(label="#3", command=_startGrathOne2)
-    grathmenu1.add_command(label="#1")
+    grathmenu1.add_command(label="#1", command=_startGrathOne6)
     grathmenu3.add_command(label="#1", command=_startGrathOne3)
     grathmenu3.add_command(label="#2", command=_startGrathOne4)
     grathmenu3.add_command(label="#3", command=_startGrathOne5)
