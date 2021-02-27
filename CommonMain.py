@@ -33,7 +33,7 @@ class common(tk.Frame):
 
     def _useParams(self):
 
-        M0, M1, M2, steps, t, f1 = self.InputText.get(), self.InputText2.get(), self.InputText3.get(), self.InputText9.get(), self.InputText10.get(), self.InputText11.get()
+        M0, M1, M2, steps, t, f1 = self.InputText.get(), self.InputText2.get(), self.InputText3.get(), self.InputText9.get(), self.InputText10.get(), 1
         r1x, r1y, r2x, r2y  = self.InputText4.get(), self.InputText6.get(), self.InputText7.get(), self.InputText8.get()
         v1x, v1y, v2x, v2y = self.InputText01.get(), self.InputText02.get(), self.InputText03.get(), self.InputText04.get()
         if os.path.exists("CommonProblem/Params"):
@@ -236,10 +236,10 @@ class common(tk.Frame):
         self.MassLabel2 = tk.Label(self, text="M2=")
         self.MassLabel2.place(relwidth=0.03, relx=0.87, rely=0.05)
 
-        self.InputText11 = tk.Entry(self)
-        self.InputText11.place(relwidth=0.05, relx=0.8, rely=0.1)
-        self.MassLabel11 = tk.Label(self, text="f=")
-        self.MassLabel11.place(relwidth=0.03, relx=0.77, rely=0.1)
+        #self.InputText11 = tk.Entry(self)
+        #self.InputText11.place(relwidth=0.05, relx=0.8, rely=0.1)
+        #self.MassLabel11 = tk.Label(self, text="f=")
+        #self.MassLabel11.place(relwidth=0.03, relx=0.77, rely=0.1)
 
         self.InputText4 = tk.Entry(self)
         self.InputText4.place(relwidth=0.05, relx=0.7, rely=0.1)

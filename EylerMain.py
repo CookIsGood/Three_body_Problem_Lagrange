@@ -41,7 +41,7 @@ class eyler(tk.Frame):
         text_file.close()
 
     def _useParams(self):
-        M0, M1, M2, f1, c, e, F, vp, steps, t = self.InputText.get(), self.InputText2.get(), self.InputText3.get(), self.InputText4.get(), self.InputText5.get(), self.InputText6.get(), self.InputText7.get(), self.InputText8.get(), self.InputText9.get(), self.InputText10.get()
+        M0, M1, M2, f1, c, e, F, vp, steps, t = self.InputText.get(), self.InputText2.get(), self.InputText3.get(), 1, 200000, self.InputText6.get(), 0, 0, self.InputText9.get(), self.InputText10.get()
 
         if os.path.exists("Eyler/Params"):
             print("Папка Params уже существует")
@@ -394,30 +394,30 @@ class eyler(tk.Frame):
         self.MassLabel2 = tk.Label(self, text="M2=")
         self.MassLabel2.place(relwidth=0.03, relx=0.87, rely=0.05)
 
-        self.InputText4 = tk.Entry(self)
-        self.InputText4.place(relwidth=0.05, relx=0.7, rely=0.1)
-        self.MassLabel3 = tk.Label(self, text="f=")
-        self.MassLabel3.place(relwidth=0.03, relx=0.67, rely=0.1)
+        #self.InputText4 = tk.Entry(self)
+        #self.InputText4.place(relwidth=0.05, relx=0.7, rely=0.1)
+        #self.MassLabel3 = tk.Label(self, text="f=")
+        #self.MassLabel3.place(relwidth=0.03, relx=0.67, rely=0.1)
 
-        self.InputText5 = tk.Entry(self)
-        self.InputText5.place(relwidth=0.05, relx=0.8, rely=0.1)
-        self.MassLabel4 = tk.Label(self, text="c=")
-        self.MassLabel4.place(relwidth=0.03, relx=0.77, rely=0.1)
+        #self.InputText5 = tk.Entry(self)
+        #self.InputText5.place(relwidth=0.05, relx=0.8, rely=0.1)
+        #self.MassLabel4 = tk.Label(self, text="c=")
+        #self.MassLabel4.place(relwidth=0.03, relx=0.77, rely=0.1)
 
         self.InputText6 = tk.Entry(self)
-        self.InputText6.place(relwidth=0.05, relx=0.9, rely=0.1)
+        self.InputText6.place(relwidth=0.05, relx=0.8, rely=0.1)
         self.MassLabel5 = tk.Label(self, text="e=")
-        self.MassLabel5.place(relwidth=0.03, relx=0.87, rely=0.1)
+        self.MassLabel5.place(relwidth=0.03, relx=0.77, rely=0.1)
 
-        self.InputText7 = tk.Entry(self)
-        self.InputText7.place(relwidth=0.05, relx=0.7, rely=0.15)
-        self.MassLabel6 = tk.Label(self, text="F=")
-        self.MassLabel6.place(relwidth=0.03, relx=0.67, rely=0.15)
+        #self.InputText7 = tk.Entry(self)
+        #self.InputText7.place(relwidth=0.05, relx=0.7, rely=0.15)
+        #self.MassLabel6 = tk.Label(self, text="F=")
+        #self.MassLabel6.place(relwidth=0.03, relx=0.67, rely=0.15)
 
-        self.InputText8 = tk.Entry(self)
-        self.InputText8.place(relwidth=0.05, relx=0.9, rely=0.15)
-        self.MassLabel7 = tk.Label(self, text="vp=")
-        self.MassLabel7.place(relwidth=0.03, relx=0.87, rely=0.15)
+        #self.InputText8 = tk.Entry(self)
+        #self.InputText8.place(relwidth=0.05, relx=0.9, rely=0.15)
+        #self.MassLabel7 = tk.Label(self, text="vp=")
+        #self.MassLabel7.place(relwidth=0.03, relx=0.87, rely=0.15)
 
         self.InputText9 = tk.Entry(self)
         self.InputText9.place(relwidth=0.05, relx=0.80, rely=0.22)

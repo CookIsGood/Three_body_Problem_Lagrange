@@ -3,8 +3,9 @@ import tkinter as tk
 from lagrangeMain import lagrange as TabA
 from CommonMain import common as TabB
 from EylerMain import eyler as TabC
+from testMain import testmain as TabD
 
-
+import os
 def _quit():
     root.destroy()
 
@@ -89,10 +90,12 @@ class MainWindow(tk.Frame):
         a_tab = TabA(self.notebook)
         b_tab = TabB(self.notebook)
         c_tab = TabC(self.notebook)
+        d_tab = TabD(self.notebook)
 
         self.notebook.add(b_tab, text="Общее")
         self.notebook.add(a_tab, text="Лагранж")
         self.notebook.add(c_tab, text="Эйлер")
+        self.notebook.add(d_tab, text="Тестирование")
 
         self.notebook.pack()
 
@@ -102,6 +105,21 @@ class MainWindow(tk.Frame):
 if __name__ == '__main__':
     root = Tk()
     root.title('Плоские частные решения в задаче трех тел.')
+    if os.path.exists("Lagrange"):
+        print("Папка Lagrange уже существует")
+    else:
+        os.mkdir("Lagrange")
+        print("Папка Lagrange создана")
+    if os.path.exists("Eyler"):
+        print("Папка Eyler уже существует")
+    else:
+        os.mkdir("Eyler")
+        print("Папка Eyler создана")
+    if os.path.exists("CommonProblem"):
+        print("Папка CommonProblem уже существует")
+    else:
+        os.mkdir("CommonProblem")
+        print("Папка CommonProblem создана")
     ex = MainWindow(root)
     mainmenu = tk.Menu(root)
     root.config(menu=mainmenu)
