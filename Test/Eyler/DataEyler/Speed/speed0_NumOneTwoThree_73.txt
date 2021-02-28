@@ -1,0 +1,400 @@
+step = 0
+4.77628771151706e-13;3887.86941912473
+4.77628771151706e-13;4091469.78871662
+-5.00384523189918e-10;-4085961.97389724
+step = 1
+2032.84470442662;-312.009405348211
+2139669.92797213;-327882.256924736
+-2136422.23537118;327905.266719400
+step = 2
+nan;nan
+nan;nan
+nan;nan
+step = 3
+nan;nan
+nan;nan
+nan;nan
+step = 4
+nan;nan
+nan;nan
+nan;nan
+step = 5
+nan;nan
+nan;nan
+nan;nan
+step = 6
+nan;nan
+nan;nan
+nan;nan
+step = 7
+nan;nan
+nan;nan
+nan;nan
+step = 8
+nan;nan
+nan;nan
+nan;nan
+step = 9
+nan;nan
+nan;nan
+nan;nan
+step = 10
+nan;nan
+nan;nan
+nan;nan
+step = 11
+nan;nan
+nan;nan
+nan;nan
+step = 12
+nan;nan
+nan;nan
+nan;nan
+step = 13
+nan;nan
+nan;nan
+nan;nan
+step = 14
+nan;nan
+nan;nan
+nan;nan
+step = 15
+nan;nan
+nan;nan
+nan;nan
+step = 16
+nan;nan
+nan;nan
+nan;nan
+step = 17
+nan;nan
+nan;nan
+nan;nan
+step = 18
+nan;nan
+nan;nan
+nan;nan
+step = 19
+nan;nan
+nan;nan
+nan;nan
+step = 20
+nan;nan
+nan;nan
+nan;nan
+step = 21
+nan;nan
+nan;nan
+nan;nan
+step = 22
+nan;nan
+nan;nan
+nan;nan
+step = 23
+nan;nan
+nan;nan
+nan;nan
+step = 24
+nan;nan
+nan;nan
+nan;nan
+step = 25
+nan;nan
+nan;nan
+nan;nan
+step = 26
+nan;nan
+nan;nan
+nan;nan
+step = 27
+nan;nan
+nan;nan
+nan;nan
+step = 28
+nan;nan
+nan;nan
+nan;nan
+step = 29
+nan;nan
+nan;nan
+nan;nan
+step = 30
+nan;nan
+nan;nan
+nan;nan
+step = 31
+nan;nan
+nan;nan
+nan;nan
+step = 32
+nan;nan
+nan;nan
+nan;nan
+step = 33
+nan;nan
+nan;nan
+nan;nan
+step = 34
+nan;nan
+nan;nan
+nan;nan
+step = 35
+nan;nan
+nan;nan
+nan;nan
+step = 36
+nan;nan
+nan;nan
+nan;nan
+step = 37
+nan;nan
+nan;nan
+nan;nan
+step = 38
+nan;nan
+nan;nan
+nan;nan
+step = 39
+nan;nan
+nan;nan
+nan;nan
+step = 40
+nan;nan
+nan;nan
+nan;nan
+step = 41
+nan;nan
+nan;nan
+nan;nan
+step = 42
+nan;nan
+nan;nan
+nan;nan
+step = 43
+nan;nan
+nan;nan
+nan;nan
+step = 44
+nan;nan
+nan;nan
+nan;nan
+step = 45
+nan;nan
+nan;nan
+nan;nan
+step = 46
+nan;nan
+nan;nan
+nan;nan
+step = 47
+nan;nan
+nan;nan
+nan;nan
+step = 48
+nan;nan
+nan;nan
+nan;nan
+step = 49
+nan;nan
+nan;nan
+nan;nan
+step = 50
+nan;nan
+nan;nan
+nan;nan
+step = 51
+nan;nan
+nan;nan
+nan;nan
+step = 52
+nan;nan
+nan;nan
+nan;nan
+step = 53
+nan;nan
+nan;nan
+nan;nan
+step = 54
+nan;nan
+nan;nan
+nan;nan
+step = 55
+nan;nan
+nan;nan
+nan;nan
+step = 56
+nan;nan
+nan;nan
+nan;nan
+step = 57
+nan;nan
+nan;nan
+nan;nan
+step = 58
+nan;nan
+nan;nan
+nan;nan
+step = 59
+nan;nan
+nan;nan
+nan;nan
+step = 60
+nan;nan
+nan;nan
+nan;nan
+step = 61
+nan;nan
+nan;nan
+nan;nan
+step = 62
+nan;nan
+nan;nan
+nan;nan
+step = 63
+nan;nan
+nan;nan
+nan;nan
+step = 64
+nan;nan
+nan;nan
+nan;nan
+step = 65
+nan;nan
+nan;nan
+nan;nan
+step = 66
+nan;nan
+nan;nan
+nan;nan
+step = 67
+nan;nan
+nan;nan
+nan;nan
+step = 68
+nan;nan
+nan;nan
+nan;nan
+step = 69
+nan;nan
+nan;nan
+nan;nan
+step = 70
+nan;nan
+nan;nan
+nan;nan
+step = 71
+nan;nan
+nan;nan
+nan;nan
+step = 72
+nan;nan
+nan;nan
+nan;nan
+step = 73
+nan;nan
+nan;nan
+nan;nan
+step = 74
+nan;nan
+nan;nan
+nan;nan
+step = 75
+nan;nan
+nan;nan
+nan;nan
+step = 76
+nan;nan
+nan;nan
+nan;nan
+step = 77
+nan;nan
+nan;nan
+nan;nan
+step = 78
+nan;nan
+nan;nan
+nan;nan
+step = 79
+nan;nan
+nan;nan
+nan;nan
+step = 80
+nan;nan
+nan;nan
+nan;nan
+step = 81
+nan;nan
+nan;nan
+nan;nan
+step = 82
+nan;nan
+nan;nan
+nan;nan
+step = 83
+nan;nan
+nan;nan
+nan;nan
+step = 84
+nan;nan
+nan;nan
+nan;nan
+step = 85
+nan;nan
+nan;nan
+nan;nan
+step = 86
+nan;nan
+nan;nan
+nan;nan
+step = 87
+nan;nan
+nan;nan
+nan;nan
+step = 88
+nan;nan
+nan;nan
+nan;nan
+step = 89
+nan;nan
+nan;nan
+nan;nan
+step = 90
+nan;nan
+nan;nan
+nan;nan
+step = 91
+nan;nan
+nan;nan
+nan;nan
+step = 92
+nan;nan
+nan;nan
+nan;nan
+step = 93
+nan;nan
+nan;nan
+nan;nan
+step = 94
+nan;nan
+nan;nan
+nan;nan
+step = 95
+nan;nan
+nan;nan
+nan;nan
+step = 96
+nan;nan
+nan;nan
+nan;nan
+step = 97
+nan;nan
+nan;nan
+nan;nan
+step = 98
+nan;nan
+nan;nan
+nan;nan
+step = 99
+nan;nan
+nan;nan
+nan;nan
