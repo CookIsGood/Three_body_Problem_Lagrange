@@ -4,6 +4,7 @@ from lagrangeMain import lagrange as TabA
 from CommonMain import common as TabB
 from EylerMain import eyler as TabC
 from testMain import testmain as TabD
+from nbodyMain import nbody as TabF
 
 import os
 def _quit():
@@ -91,10 +92,12 @@ class MainWindow(tk.Frame):
         b_tab = TabB(self.notebook)
         c_tab = TabC(self.notebook)
         d_tab = TabD(self.notebook)
+        f_tab = TabF(self.notebook)
 
         self.notebook.add(b_tab, text="Общее")
         self.notebook.add(a_tab, text="Лагранж")
         self.notebook.add(c_tab, text="Эйлер")
+        self.notebook.add(f_tab, text="N тел")
         self.notebook.add(d_tab, text="Тестирование")
 
         self.notebook.pack()
@@ -120,6 +123,11 @@ if __name__ == '__main__':
     else:
         os.mkdir("CommonProblem")
         print("Папка CommonProblem создана")
+    if os.path.exists("Nbody"):
+        print("Папка Nbody уже существует")
+    else:
+        os.mkdir("Nbody")
+        print("Папка Nbody создана")
     ex = MainWindow(root)
     mainmenu = tk.Menu(root)
     root.config(menu=mainmenu)
