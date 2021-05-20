@@ -1,4 +1,5 @@
 import tkinter as tk
+import tkinter.filedialog as fd
 from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg, NavigationToolbar2Tk)
 from matplotlib.backend_bases import key_press_handler
 from matplotlib.figure import Figure
@@ -27,18 +28,6 @@ class eyler(tk.Frame):
         tk.Frame.__init__(self)
         self.parent = parent
         self.init_ui()
-
-    def _saveLog(self):
-        if os.path.exists("Eyler/Logs"):
-            print("Папка Logs уже существует")
-        else:
-            os.mkdir("Eyler/Logs")
-            print("Папка Logs создана")
-        text = self.LogText.get("1.0", "end-1c")
-        time = datetime.today().strftime("%d%m%Y_%H%M%S")
-        text_file = open("Eyler/Logs/" + str(time) + "Log.txt", "w")
-        text_file.write(str(text))
-        text_file.close()
 
     def _useParams(self):
         M0, M1, M2, f1, c, e, F, vp, steps, t = self.InputText.get(), self.InputText2.get(), self.InputText3.get(), 1, 200000, self.InputText6.get(), 0, 0, self.InputText9.get(), self.InputText10.get()
@@ -364,35 +353,68 @@ class eyler(tk.Frame):
         self.LogText.insert(1.0, text)
 
     def init_ui(self):
+        def choose_directory():
 
+            directory = fd.askdirectory(title="Открыть папку", initialdir="/")
+            current_dir_file = open("CurDir.txt", "w")
+            current_dir_file.write(str(directory) + "/")
+            current_dir_file.close()
+            curr_dir_read1 = open('CurDir.txt', 'r')
+            text1 = curr_dir_read1.read()
+            label['text'] = str(text1)
+
+
+        def _saveLog():
+            curr_dir_read1 = open('CurDir.txt', 'r')
+            text1 = curr_dir_read1.read()
+            if os.path.exists(str(text1) + "Logs"):
+                print("Папка Logs уже существует")
+            else:
+                os.mkdir(str(text1) + "Logs")
+                print("Папка Logs создана")
+            text = self.LogText.get("1.0", "end-1c")
+            time = datetime.today().strftime("%d%m%Y_%H%M%S")
+            text_file = open(str(text1) + "Logs/" + str(time) + "Log.txt", "w")
+            text_file.write(str(text))
+            text_file.close()
+
+
+        curr_dir_read = open('CurDir.txt', 'r')
+        text = curr_dir_read.read()
+        label = tk.Label(self, text=str(text), bg='white', justify='left', anchor='w')
+        label.place(relwidth=1, relheight=0.037, relx=0.095, rely=0)
+        self.ChangeDir = tk.Button(master=self, text='Выбрать папку',
+                                   command=choose_directory)
+        self.ChangeDir.place(relx=0, rely=0)
+        curr_dir_read.close()
 
         self.fig, (self.ax1, self.ax2, self.ax3, self.ax4, self.ax5, self.ax6) = plt.subplots(6)
 
         self.canvas = FigureCanvasTkAgg(self.fig, master=self)
-        self.canvas.get_tk_widget().place(relwidth=0.6, relheight=5, relx=0, rely=0)
+        self.canvas.get_tk_widget().place(relwidth=0.6, relheight=5, relx=0, rely=0.039)
 
         self.scrollbar = tk.Scrollbar(master=self, orient=tk.VERTICAL)
         self.scrollbar["command"] = self.canvas.get_tk_widget().yview
-        self.scrollbar.place(relwidth=0.02, relheight=1, relx=0.601, rely=0)
+        self.scrollbar.place(relwidth=0.02, relheight=0.96, relx=0.601, rely=0.039)
 
         self.scrollbar1 = tk.Scrollbar(master=self, orient=tk.HORIZONTAL)
         self.scrollbar1["command"] = self.canvas.get_tk_widget().xview
         self.scrollbar1.place(relwidth=0.6, relheight=0.03, relx=0, rely=0.972)
 
         self.InputText = tk.Entry(self)
-        self.InputText.place(relwidth=0.05, relx=0.7, rely=0.05)
+        self.InputText.place(relwidth=0.05, relx=0.7, rely=0.1)
         self.MassLabel0 = tk.Label(self, text="M0=")
-        self.MassLabel0.place(relwidth=0.03, relx=0.67, rely=0.05)
+        self.MassLabel0.place(relwidth=0.03, relx=0.67, rely=0.1)
 
         self.InputText2 = tk.Entry(self)
-        self.InputText2.place(relwidth=0.05, relx=0.8, rely=0.05)
+        self.InputText2.place(relwidth=0.05, relx=0.8, rely=0.1)
         self.MassLabel1 = tk.Label(self, text="M1=")
-        self.MassLabel1.place(relwidth=0.03, relx=0.77, rely=0.05)
+        self.MassLabel1.place(relwidth=0.03, relx=0.77, rely=0.1)
 
         self.InputText3 = tk.Entry(self)
-        self.InputText3.place(relwidth=0.05, relx=0.9, rely=0.05)
+        self.InputText3.place(relwidth=0.05, relx=0.9, rely=0.1)
         self.MassLabel2 = tk.Label(self, text="M2=")
-        self.MassLabel2.place(relwidth=0.03, relx=0.87, rely=0.05)
+        self.MassLabel2.place(relwidth=0.03, relx=0.87, rely=0.1)
 
         #self.InputText4 = tk.Entry(self)
         #self.InputText4.place(relwidth=0.05, relx=0.7, rely=0.1)
@@ -405,9 +427,9 @@ class eyler(tk.Frame):
         #self.MassLabel4.place(relwidth=0.03, relx=0.77, rely=0.1)
 
         self.InputText6 = tk.Entry(self)
-        self.InputText6.place(relwidth=0.05, relx=0.8, rely=0.1)
+        self.InputText6.place(relwidth=0.05, relx=0.8, rely=0.15)
         self.MassLabel5 = tk.Label(self, text="e=")
-        self.MassLabel5.place(relwidth=0.03, relx=0.77, rely=0.1)
+        self.MassLabel5.place(relwidth=0.03, relx=0.77, rely=0.15)
 
         #self.InputText7 = tk.Entry(self)
         #self.InputText7.place(relwidth=0.05, relx=0.7, rely=0.15)
@@ -420,30 +442,30 @@ class eyler(tk.Frame):
         #self.MassLabel7.place(relwidth=0.03, relx=0.87, rely=0.15)
 
         self.InputText9 = tk.Entry(self)
-        self.InputText9.place(relwidth=0.05, relx=0.80, rely=0.22)
+        self.InputText9.place(relwidth=0.05, relx=0.80, rely=0.27)
         self.MassLabel8 = tk.Label(self, text="Интервал")
-        self.MassLabel8.place(relwidth=0.12, relx=0.765, rely=0.19)
+        self.MassLabel8.place(relwidth=0.12, relx=0.765, rely=0.24)
 
         self.InputText10 = tk.Entry(self)
-        self.InputText10.place(relwidth=0.05, relx=0.80, rely=0.29)
+        self.InputText10.place(relwidth=0.05, relx=0.80, rely=0.34)
         self.MassLabel9 = tk.Label(self, text="Шаг")
-        self.MassLabel9.place(relwidth=0.12, relx=0.765, rely=0.26)
+        self.MassLabel9.place(relwidth=0.12, relx=0.765, rely=0.31)
 
         self.WelcomeLabel = tk.Label(self, text="Введите параметры!")
-        self.WelcomeLabel.place(relwidth=0.12, relx=0.76, rely=0.01)
+        self.WelcomeLabel.place(relwidth=0.12, relx=0.76, rely=0.06)
 
         self.StartButton = tk.Button(master=self, text='Построить графики!',
                                      command=self._start_grath)
-        self.StartButton.place(relx=0.85, rely=0.33)
+        self.StartButton.place(relx=0.85, rely=0.38)
 
         self.TestButton = tk.Button(self, text="Применить параметры!", command=self._useParams).place(relx=0.68,
-                                                                                                      rely=0.33)
+                                                                                                      rely=0.38)
 
         self.LogLabel = tk.Label(self,
                                  text="Здесь будет отображаться информация\n о введенных вами данными и начальные условия точек!")
         self.LogLabel.place(relwidth=0.35, relheight=0.05, relx=0.635, rely=0.69)
 
-        self.SaveDataButton = tk.Button(master=self, text='Сохранить данные', command=self._saveLog)
+        self.SaveDataButton = tk.Button(master=self, text='Сохранить данные', command=_saveLog)
         self.SaveDataButton.place(relx=0.65, rely=0.95)
 
         self.f = tk.Frame(self)
