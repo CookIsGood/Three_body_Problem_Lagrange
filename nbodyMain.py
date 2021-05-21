@@ -48,6 +48,7 @@ class nbody(tk.Frame):
 
         self.ax1.clear()
         self.ax2.clear()
+        self.ax3.clear()
 
         self.ax1.set(title='#1 Задача N тел.')
         self.ax1.set_xlabel('x')
@@ -71,8 +72,49 @@ class nbody(tk.Frame):
         for i in range(N):
                self.ax1.plot(res_for_plot_x[i], res_for_plot_y[i], linewidth=1, color=(random.random(), random.random(), random.random()))
         self.ax1.set_aspect('equal', adjustable='box', anchor='C')
+
+
+        C_data_NumOne, H_data_NumOne = open('Nbody/Coords/C_NumOne.txt', 'r').read(), open(
+            'Nbody/Coords/H_NumOne.txt', 'r').read()
+        C_X_Y_data_NumOne, H_X_Y_data_NumOne = C_data_NumOne.split(
+            '\n'), H_data_NumOne.split('\n')
+        c_x_new_NumOne, c_y_new_NumOne, h_x_new_NumOne, h_y_new_NumOne = [], [], [], []
+        for line in C_X_Y_data_NumOne:
+            if len(line) > 1:
+                x, y = line.split(';')
+                c_x_new_NumOne.append(float(x))
+                c_y_new_NumOne.append(float(y))
+        for line in H_X_Y_data_NumOne:
+            if len(line) > 1:
+                x, y = line.split(';')
+                h_x_new_NumOne.append(float(x))
+                h_y_new_NumOne.append(float(y))
+
+        self.ax2.set(title='#2 График H.')
+        self.ax2.set_xlabel('t')
+        self.ax2.set_ylabel('h')
+        self.ax2.plot(h_x_new_NumOne, h_y_new_NumOne, linewidth=1,
+                      color="orange")
+
+
+        self.ax3.set(title='#3 График C.')
+        self.ax3.set_xlabel('t')
+        self.ax3.set_ylabel('c')
+        self.ax3.plot(c_x_new_NumOne, c_y_new_NumOne, linewidth=1,
+                      color="orange")
+
+
+
+
         self.canvas.draw_idle()
 
+        conditions1 = open("Nbody/bin/dir.txt", "r")
+        text4 = conditions1.read()
+        cond1 = open(f"{text4}", "r")
+        text_res = cond1.read()
+        self.LogText.insert(1.0, text_res)
+        conditions1.close()
+        cond1.close()
 
 
     def _start_grath(self):
@@ -109,6 +151,7 @@ class nbody(tk.Frame):
             curr_dir_read1 = open('CurDir.txt', 'r')
             text1 = curr_dir_read1.read()
             label['text'] = str(text1)
+            curr_dir_read1.close()
 
 
         def choose_file():
@@ -126,6 +169,7 @@ class nbody(tk.Frame):
         def _saveLog():
             curr_dir_read1 = open('CurDir.txt', 'r')
             text1 = curr_dir_read1.read()
+            curr_dir_read1.close()
             if os.path.exists(str(text1) + "Logs"):
                 print("Папка Logs уже существует")
             else:
@@ -147,10 +191,10 @@ class nbody(tk.Frame):
         curr_dir_read.close()
 
         # Холст
-        self.fig, (self.ax1, self.ax2) = plt.subplots(2)
+        self.fig, (self.ax1, self.ax2, self.ax3) = plt.subplots(3)
 
         self.canvas = FigureCanvasTkAgg(self.fig, master=self)
-        self.canvas.get_tk_widget().place(relwidth=0.6, relheight=5, relx=0, rely=0.039)
+        self.canvas.get_tk_widget().place(relwidth=0.6, relheight=3, relx=0, rely=0.039)
 
         self.scrollbar = tk.Scrollbar(master=self, orient=tk.VERTICAL)
         self.scrollbar["command"] = self.canvas.get_tk_widget().yview
@@ -196,3 +240,4 @@ class nbody(tk.Frame):
         self.LogText.place(relwidth=0.899, relheight=0.9)
         self.scrollbar.config(command=self.LogText.yview)
         self.scrollbar.place(relwidth=0.07, relheight=0.9, relx=0.90, rely=0.005)
+        plt.subplots_adjust(hspace=0.4)

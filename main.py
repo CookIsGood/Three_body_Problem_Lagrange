@@ -5,7 +5,7 @@ from CommonMain import common as TabB
 from EylerMain import eyler as TabC
 from testMain import testmain as TabD
 from nbodyMain import nbody as TabF
-
+import random
 import os
 def _quit():
     root.destroy()
@@ -71,8 +71,14 @@ def _startGrathOne6():
     with open("CommonProblem/GrathOne/Grath#1.py", "r") as f:
         exec(f.read())
 
-
-
+def _startGrathOne7():
+    with open("Nbody/GrathOne/Grath#1.py", "r") as f:
+        exec(f.read())
+def _startAnimate6():
+    with open("Nbody/nbody_anim.py", "r") as f:
+        exec(f.read())
+def _trash():
+    pass
 class MainWindow(tk.Frame):
     def __init__(self, parent):
         super().__init__(parent)
@@ -141,21 +147,25 @@ if __name__ == '__main__':
     grathmenu1 = tk.Menu(grathmenu, tearoff=0)
     grathmenu2 = tk.Menu(grathmenu, tearoff=0)
     grathmenu3 = tk.Menu(grathmenu, tearoff=0)
+    grathmenu4 = tk.Menu(grathmenu, tearoff=0)
 
     animationmenu1 = tk.Menu(grathmenu, tearoff=0)
     animationmenu2 = tk.Menu(grathmenu, tearoff=0)
     animationmenu3 = tk.Menu(grathmenu, tearoff=0)
+    animationmenu4 = tk.Menu(grathmenu, tearoff=0)
 
     mainmenu.add_cascade(label="Инструменты", menu=filemenu)
     mainmenu.add_cascade(label="Графики", menu=grathmenu)
     grathmenu.add_cascade(label="Общая", menu=grathmenu1)
     grathmenu.add_cascade(label="Лагранж", menu=grathmenu2)
     grathmenu.add_cascade(label="Эйлер", menu=grathmenu3)
+    grathmenu.add_cascade(label="N тел", menu=grathmenu4)
 
     mainmenu.add_cascade(label="Анимация", menu=animationmenu)
     animationmenu.add_cascade(label="Общая", menu=animationmenu1)
     animationmenu.add_cascade(label="Лагранж", menu=animationmenu2)
     animationmenu.add_cascade(label="Эйлер", menu=animationmenu3)
+    animationmenu.add_cascade(label="N тел", menu=animationmenu4)
 
     grathmenu2.add_command(label="#1", command=_startGrathOne)
     grathmenu2.add_command(label="#2", command=_startGrathOne1)
@@ -164,6 +174,7 @@ if __name__ == '__main__':
     grathmenu3.add_command(label="#1", command=_startGrathOne3)
     grathmenu3.add_command(label="#2", command=_startGrathOne4)
     grathmenu3.add_command(label="#3", command=_startGrathOne5)
+    grathmenu4.add_command(label="#1", command=_startGrathOne7)
 
     animationmenu2.add_command(label="#1", command=_startAnimate)
     animationmenu2.add_command(label="#2", command=_startAnimate1)
@@ -172,5 +183,6 @@ if __name__ == '__main__':
     animationmenu3.add_command(label="#1", command=_startAnimate3)
     animationmenu3.add_command(label="#2", command=_startAnimate4)
     animationmenu3.add_command(label="#3", command=_startAnimate5)
+    animationmenu4.add_command(label="#1", command=_startAnimate6)
     root.geometry("1000x700")
     root.mainloop()

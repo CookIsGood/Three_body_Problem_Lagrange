@@ -173,6 +173,7 @@ class common(tk.Frame):
         self.ax1.plot(r1x_date, r1y_date, linewidth=1, color='blue', label='r1')
         self.ax1.plot(r2x_date, r2y_date, linewidth=1, color='red', label='r2')
         self.ax1.legend()
+        self.ax1.set_aspect('equal', adjustable='box', anchor='C')
         # ax1.legend(bbox_to_anchor=(0.165, 1.3))
         # ax1.set_aspect('equal', adjustable='box', anchor='C')
 
@@ -181,6 +182,7 @@ class common(tk.Frame):
         self.ax2.set_ylabel('H')
         self.ax2.plot(H_x_NumOne, H_y_NumOne, linewidth=1, color='orange', label='h0')
         self.ax2.legend()
+        #self.ax2.set_aspect('equal', adjustable='box', anchor='C')
         # ax4.set_aspect('equal', adjustable='box', anchor='C')
 
         self.ax3.set(title='#3 График  C по времени')
@@ -188,6 +190,7 @@ class common(tk.Frame):
         self.ax3.set_ylabel('C')
         self.ax3.plot(C_x_NumOne, C_y_NumOne, linewidth=1, color='orange', label='c0')
         self.ax3.legend()
+        #self.ax3.set_aspect('equal', adjustable='box', anchor='C')
         # ax4.set_aspect('equal', adjustable='box', anchor='C')
 
         self.canvas.draw_idle()
@@ -202,6 +205,10 @@ class common(tk.Frame):
             current_dir_file = open("CurDir.txt", "w")
             current_dir_file.write(str(directory) + "/")
             current_dir_file.close()
+            curr_dir_read1 = open('CurDir.txt', 'r')
+            text1 = curr_dir_read1.read()
+            label['text'] = str(text1)
+            curr_dir_read1.close()
 
 
         def _saveLog():
@@ -231,7 +238,7 @@ class common(tk.Frame):
         self.fig, (self.ax1, self.ax2, self.ax3) = plt.subplots(3)
 
         self.canvas = FigureCanvasTkAgg(self.fig, master=self)
-        self.canvas.get_tk_widget().place(relwidth=0.6, relheight=5, relx=0, rely=0.039)
+        self.canvas.get_tk_widget().place(relwidth=0.6, relheight=3.5, relx=0, rely=0.039)
 
         self.scrollbar = tk.Scrollbar(master=self, orient=tk.VERTICAL)
         self.scrollbar["command"] = self.canvas.get_tk_widget().yview
@@ -340,4 +347,4 @@ class common(tk.Frame):
         self.scrollbar.config(command=self.LogText.yview)
         self.scrollbar.place(relwidth=0.07, relheight=0.9, relx=0.90, rely=0.005)
 
-        plt.subplots_adjust(hspace=0.7)
+        plt.subplots_adjust(hspace=0.4)

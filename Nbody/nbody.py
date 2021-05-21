@@ -150,8 +150,8 @@ f.write("Hfile=open('Nbody/Coords/H_NumOne.txt', 'w')\n")
 f.write("Cfile=open('Nbody/Coords/C_NumOne.txt', 'w')\n")
 
 f.write('for i in range(len(t)):\n')
-f.write("   Hfile.write(str(t[i])+';'+str(HH[i])+'" + chr(92) + "n')\n")
-f.write("   Cfile.write(str(t[i])+';'+str(CC[i])+'" + chr(92) + "n')\n")
+f.write("   Hfile.write(str(round(t[i],3))+';'+str(round(HH[i],3))+'" + chr(92) + "n')\n")
+f.write("   Cfile.write(str(round(t[i],3))+';'+str(round(CC[i],3))+'" + chr(92) + "n')\n")
 
 for i in range(N):
     f.write("text_filec" + str(i) + ".close()\n")
