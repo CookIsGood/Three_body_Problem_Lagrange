@@ -38,6 +38,42 @@ class nbody(tk.Frame):
             os.mkdir("Nbody/Params")
             print("Папка Params создана")
 
+    def plot_grath(self):
+        conditions = open("Nbody/bin/dir.txt", "r")
+        text = conditions.read()
+        cond = open(f"{text}", "r")
+        text_res = cond.read()
+        text_final = text_res.split("\n")
+        N = int(''.join([n for n in text_final[0] if n.isdigit()]))
+
+        self.ax1.clear()
+        self.ax2.clear()
+
+        self.ax1.set(title='#1 Задача N тел.')
+        self.ax1.set_xlabel('x')
+        self.ax1.set_ylabel('y')
+
+        res_for_plot_x = [[] for n in range(N)]
+        res_for_plot_y = [[] for n in range(N)]
+        for i in range(N):
+            text = open("Nbody/Coords/coord" + str(i) + "_NumOne.txt", "r")
+            tt = text.read()
+            tt1 = tt.split("\n")
+            for line in tt1:
+                if len(line) > 1:
+                    x, y = line.split(';')
+                    res_for_plot_x[i].append(float(x))
+                    res_for_plot_y[i].append(float(y))
+        text.close()
+        cond.close()
+        conditions.close()
+        #print(f",y ={res_for_plot_y}")
+        for i in range(N):
+               self.ax1.plot(res_for_plot_x[i], res_for_plot_y[i], linewidth=1, color=(random.random(), random.random(), random.random()))
+        self.ax1.set_aspect('equal', adjustable='box', anchor='C')
+        self.canvas.draw_idle()
+
+
 
     def _start_grath(self):
         pass
@@ -45,6 +81,7 @@ class nbody(tk.Frame):
     def init_ui(self):
         def trash():
             pass
+
 
         def generate_equation(N, R):
             X = 0
@@ -142,10 +179,7 @@ class nbody(tk.Frame):
         self.StartButton.place(relx=0.85, rely=0.18)
         self.TestButton = tk.Button(self, text="Создать файл!", command=automatic_cond).place(relx=0.68, rely=0.18)
 
-        #Ручной режим
-
-        self.TestButton1 = tk.Button(self, text="Построить графики!", command=trash).place(relx=0.74, rely=0.25)
-        # Применение и построение графиков
+        self.TestButton1 = tk.Button(self, text="Построить графики!", command=self.plot_grath).place(relx=0.74, rely=0.25)
 
         # Логи
         self.LogLabel = tk.Label(self,text="Здесь будет отображаться информация\n о введенных вами данными и начальные условия точек!")
