@@ -159,9 +159,11 @@ text_file5.close()
 
 text_file11 = open("CommonProblem/Coords/H_NumOne.txt", "w")
 text_file12 = open("CommonProblem/Coords/C_NumOne.txt", "w")
+hh = H/H[0]
+cc = c/c[0]
 for i in range(len(t)):
-    text_file11.write(str(round(t[i], 3)) + ";" + str(round(H[i], 3)) + "\n")
-    text_file12.write(str(round(t[i], 3)) + ";" + str(round(c[i], 3)) + "\n")
+    text_file11.write(str(round(t[i], 3)) + ";" + str(round(hh[i], 3)) + "\n")
+    text_file12.write(str(round(t[i], 3)) + ";" + str(round(cc[i], 3)) + "\n")
 text_file11.close()
 text_file12.close()
 # print(c)

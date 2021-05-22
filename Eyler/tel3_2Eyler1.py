@@ -192,15 +192,17 @@ k_date =k1
 U=f1*(M0*M1/((x1**2+y1**2)**(1/2))+M0*M2/((x2**2+y2**2)**(1/2))+M2*M1/(((x1-x2)**2+(y1-y2)**2)**(1/2)))#полная силовая функция 14.2
 c3=-1/M*((M1*x1+M2*x2)*(M1*vy1+M2*vy2)-(M1*y1+M2*y2)*(M1*vx1+M2*vx2))+M1*(x1*vy1-y1*vx1)+M2*(x2*vy2-y2*vx2)
 h=-1/2/M*((M1*vx1+M2*vx2)**2+(M1*vy1+M2*vy2)**2)+1/2*M1*(vx1**2+vy1**2)+1/2*M2*(vx2**2+vy2**2)-U
-
+cc = c3/c3[0]
+hh = h/h[0]
 text_file10 = open("Eyler/Coords/k_NumOne.txt", "w")
+k_date[0]=1
 for i in range(len(t)):
     text_file10.write(str(round(t[i],3)) + ";" + str(round(k_date[i],3)) + "\n")
 text_file10.close()
 text_file11 = open("Eyler/Coords/H_NumOne.txt", "w")
 text_file12 = open("Eyler/Coords/C_NumOne.txt", "w")
 for i in range(len(t)):
-    text_file11.write(str(round(t[i], 3)) + ";" + str(round(h[i], 3)) + "\n")
-    text_file12.write(str(round(t[i], 3)) + ";" + str(round(c3[i], 3)) + "\n")
+    text_file11.write(str(round(t[i], 3)) + ";" + str(round(cc[i], 3)) + "\n")
+    text_file12.write(str(round(t[i], 3)) + ";" + str(round(hh[i], 3)) + "\n")
 text_file11.close()
 text_file12.close()
