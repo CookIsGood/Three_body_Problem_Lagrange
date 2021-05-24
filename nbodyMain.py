@@ -163,7 +163,7 @@ class nbody(tk.Frame):
                 exec(f.read())
         def automatic_cond():
             N = int(self.InputText.get())
-            R = int(self.InputText2.get())
+            R = float(self.InputText2.get())
             generate_equation(N=N,R=R)
 
         def _saveLog():

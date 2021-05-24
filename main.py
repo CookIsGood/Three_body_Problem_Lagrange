@@ -82,10 +82,8 @@ def _trash():
 class MainWindow(tk.Frame):
     def __init__(self, parent):
         super().__init__(parent)
-
         self.parent = parent
         self.parent.title('Плоские частные решения в задаче трех тел.')
-
         self.init_ui()
 
     def init_ui(self):
